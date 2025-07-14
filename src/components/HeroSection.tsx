@@ -1,5 +1,5 @@
 
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
 import { Button } from '@/components/ui/button';
 
@@ -13,10 +13,6 @@ const HeroSection = () => {
 
   const scrollToContact = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToProjects = () => {
-    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -51,8 +47,8 @@ const HeroSection = () => {
               Passionate about transforming data into insights and building intelligent systems.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            {/* CTA Button */}
+            <div className="flex justify-center lg:justify-start">
               <Button
                 onClick={scrollToContact}
                 className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
@@ -60,28 +56,17 @@ const HeroSection = () => {
                 Hire Me
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
               </Button>
-              
-              <Button
-                onClick={scrollToProjects}
-                variant="outline"
-                className="group border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
-              >
-                View Projects
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
-              </Button>
             </div>
           </div>
 
-          {/* Right side - Profile image */}
+          {/* Right side - DB Initials */}
           <div className="flex justify-center lg:justify-end animate-scale-in" style={{ animationDelay: '0.2s' }}>
             <div className="relative">
               <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 animate-pulse-scale">
-                <div className="w-full h-full rounded-full bg-white p-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                    alt="Dhiyanesh B"
-                    className="w-full h-full rounded-full object-cover"
-                  />
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                  <span className="text-8xl font-bold font-poppins text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    DB
+                  </span>
                 </div>
               </div>
               
