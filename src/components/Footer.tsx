@@ -1,5 +1,5 @@
 
-import { ArrowUp, Heart } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -18,22 +18,6 @@ const Footer = () => {
             Aspiring Data Scientist & AI Engineer passionate about transforming data into insights 
             and building intelligent systems for a better tomorrow.
           </p>
-          
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <p className="text-gray-400 font-inter text-sm mb-4 sm:mb-0">
-                © {new Date().getFullYear()} Dhiyanesh B. Made with{' '}
-                <Heart className="inline w-4 h-4 text-red-500 mx-1" />
-                in Erode, Tamil Nadu
-              </p>
-              
-              <div className="flex items-center space-x-4">
-                <p className="text-gray-400 font-inter text-sm">
-                  Crafted with modern technologies
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
