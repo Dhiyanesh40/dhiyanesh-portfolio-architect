@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
@@ -49,12 +50,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-inter overflow-x-hidden">
+    <div className="min-h-screen font-inter overflow-x-hidden bg-background text-foreground">
       <CustomCursor />
       <Navigation />
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <ProjectsSection />
       <ContactSection />
       <Footer />
     </div>

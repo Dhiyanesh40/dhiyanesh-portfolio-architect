@@ -79,14 +79,14 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold font-poppins text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Featured Projects
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-          <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto font-inter">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             Here are some of my recent projects that showcase my skills and passion for technology
           </p>
         </div>
@@ -95,7 +95,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={project.id}
-              className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden animate-fade-up"
+              className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden animate-fade-up bg-card border-border"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative overflow-hidden">
@@ -136,10 +136,10 @@ const ProjectsSection = () => {
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold font-poppins text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl font-bold font-poppins text-card-foreground mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 font-inter text-sm mb-4 leading-relaxed">
+                <p className="text-muted-foreground font-inter text-sm mb-4 leading-relaxed">
                   {project.description}
                 </p>
                 
@@ -147,7 +147,7 @@ const ProjectsSection = () => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
+                      className="bg-secondary text-secondary-foreground px-2 py-1 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                     >
                       {tech}
                     </span>
@@ -162,7 +162,7 @@ const ProjectsSection = () => {
           <Button
             onClick={() => window.open('https://github.com/Dhiyanesh40', '_blank')}
             variant="outline"
-            className="group border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            className="group border-2 border-border hover:border-blue-600 dark:hover:border-blue-400 text-foreground hover:text-blue-600 dark:hover:text-blue-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
           >
             <Github className="mr-2 group-hover:rotate-12 transition-transform duration-200" size={18} />
             View All Projects on GitHub
