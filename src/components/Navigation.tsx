@@ -1,6 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +46,10 @@ const Navigation = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Leetcode', href: '#leetcode' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -82,12 +86,18 @@ const Navigation = () => {
                 </button>
               ))}
               
-              {/* Dark mode toggle */}
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">🌙</span>
-                <Switch checked={isDark} onCheckedChange={toggleTheme} />
-                <span className="text-sm text-gray-600 dark:text-gray-400">☀️</span>
-              </div>
+              {/* Theme toggle button */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+                aria-label="Toggle theme"
+              >
+                {isDark ? (
+                  <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                ) : (
+                  <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                )}
+              </button>
             </div>
 
             {/* Mobile menu button */}
@@ -123,12 +133,18 @@ const Navigation = () => {
                 </button>
               ))}
               
-              {/* Mobile dark mode toggle */}
-              <div className="flex items-center space-x-2 mt-8">
-                <span className="text-sm text-gray-600 dark:text-gray-400">🌙</span>
-                <Switch checked={isDark} onCheckedChange={toggleTheme} />
-                <span className="text-sm text-gray-600 dark:text-gray-400">☀️</span>
-              </div>
+              {/* Mobile theme toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-3 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 mt-8"
+                aria-label="Toggle theme"
+              >
+                {isDark ? (
+                  <Moon className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                ) : (
+                  <Sun className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                )}
+              </button>
             </div>
           </div>
         )}

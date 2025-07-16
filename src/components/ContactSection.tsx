@@ -1,41 +1,8 @@
 
-import { useState } from 'react';
-import { Send, Mail, Linkedin, Github, MapPin, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Mail, Linkedin, Github, MapPin, Code } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      alert('Message sent successfully!');
-    }, 1000);
-  };
-
   const contactInfo = [
     {
       icon: Mail,
@@ -59,6 +26,13 @@ const ContactSection = () => {
       color: 'text-gray-700 dark:text-gray-300'
     },
     {
+      icon: Code,
+      label: 'LeetCode',
+      value: 'leetcode.com/u/23ADR040',
+      href: 'https://leetcode.com/u/23ADR040/',
+      color: 'text-orange-500'
+    },
+    {
       icon: MapPin,
       label: 'Location',
       value: 'Erode, Tamil Nadu, India',
@@ -68,7 +42,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background">
+    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
@@ -80,118 +54,35 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+        <div className="max-w-4xl mx-auto">
           <div className="animate-fade-up">
-            <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
+            <h3 className="text-2xl font-bold font-poppins text-foreground mb-6 text-center">
               Let's Connect
             </h3>
-            <p className="text-muted-foreground font-inter mb-8 leading-relaxed">
+            <p className="text-muted-foreground font-inter mb-8 leading-relaxed text-center max-w-2xl mx-auto">
               Whether you have a project in mind, want to collaborate, or just want to say hello, 
               I'd love to hear from you. Let's create something amazing together!
             </p>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {contactInfo.map((item, index) => (
                 <Card 
                   key={item.label}
-                  className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer bg-card border-border"
+                  className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer bg-card border-border"
                   onClick={() => item.href !== '#' && window.open(item.href, '_blank')}
                 >
-                  <CardContent className="p-4 flex items-center space-x-4">
-                    <div className={`p-3 rounded-lg bg-muted group-hover:bg-muted/80 transition-colors duration-300`}>
-                      <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
+                  <CardContent className="p-6 text-center">
+                    <div className={`p-4 rounded-full bg-muted group-hover:bg-muted/80 transition-colors duration-300 w-16 h-16 mx-auto mb-4 flex items-center justify-center`}>
+                      <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={24} />
                     </div>
-                    <div>
-                      <p className="font-medium text-card-foreground font-inter">{item.label}</p>
-                      <p className="text-sm text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                        {item.value}
-                      </p>
-                    </div>
+                    <h4 className="font-semibold text-card-foreground font-inter mb-2">{item.label}</h4>
+                    <p className="text-sm text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 break-words">
+                      {item.value}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Card className="shadow-xl bg-card border-border">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold font-poppins text-card-foreground mb-6">
-                  Send a Message
-                </h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
-                      />
-                    </div>
-                    <div>
-                      <Input
-                        type="email"
-                        name="email"
-                        placeholder="Your Email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Input
-                      type="text"
-                      name="subject"
-                      placeholder="Subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Textarea
-                      name="message"
-                      placeholder="Your Message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 resize-none bg-background text-foreground border-input"
-                    />
-                  </div>
-                  
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Sending...
-                      </div>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
