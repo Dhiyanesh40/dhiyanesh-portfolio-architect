@@ -56,7 +56,7 @@ const ContactSection = () => {
       label: 'GitHub',
       value: 'github.com/Dhiyanesh40',
       href: 'https://github.com/Dhiyanesh40',
-      color: 'text-gray-700'
+      color: 'text-gray-700 dark:text-gray-300'
     },
     {
       icon: MapPin,
@@ -68,14 +68,14 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section id="contact" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold font-poppins text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-          <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto font-inter">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             I'm always open to discussing new opportunities and interesting projects
           </p>
         </div>
@@ -83,10 +83,10 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="animate-fade-up">
-            <h3 className="text-2xl font-bold font-poppins text-gray-900 mb-6">
+            <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
               Let's Connect
             </h3>
-            <p className="text-gray-600 font-inter mb-8 leading-relaxed">
+            <p className="text-muted-foreground font-inter mb-8 leading-relaxed">
               Whether you have a project in mind, want to collaborate, or just want to say hello, 
               I'd love to hear from you. Let's create something amazing together!
             </p>
@@ -95,16 +95,16 @@ const ContactSection = () => {
               {contactInfo.map((item, index) => (
                 <Card 
                   key={item.label}
-                  className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+                  className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer bg-card border-border"
                   onClick={() => item.href !== '#' && window.open(item.href, '_blank')}
                 >
                   <CardContent className="p-4 flex items-center space-x-4">
-                    <div className={`p-3 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors duration-300`}>
+                    <div className={`p-3 rounded-lg bg-muted group-hover:bg-muted/80 transition-colors duration-300`}>
                       <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900 font-inter">{item.label}</p>
-                      <p className="text-sm text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                      <p className="font-medium text-card-foreground font-inter">{item.label}</p>
+                      <p className="text-sm text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                         {item.value}
                       </p>
                     </div>
@@ -116,9 +116,9 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Card className="shadow-xl">
+            <Card className="shadow-xl bg-card border-border">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold font-poppins text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold font-poppins text-card-foreground mb-6">
                   Send a Message
                 </h3>
                 
@@ -132,7 +132,7 @@ const ContactSection = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
                       />
                     </div>
                     <div>
@@ -143,7 +143,7 @@ const ContactSection = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
                       />
                     </div>
                   </div>
@@ -156,7 +156,7 @@ const ContactSection = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 bg-background text-foreground border-input"
                     />
                   </div>
                   
@@ -168,7 +168,7 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       required
                       rows={5}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 resize-none"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 resize-none bg-background text-foreground border-input"
                     />
                   </div>
                   
