@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
@@ -6,25 +5,24 @@ import { Switch } from '@/components/ui/switch';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    // Check for saved theme preference or default to light mode
+    // Set dark theme as default, but allow saved preference to override
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-    
-    if (shouldBeDark) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    } else {
+    if (savedTheme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
+    } else {
+      // Default to dark theme
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     }
 
     window.addEventListener('scroll', handleScroll);

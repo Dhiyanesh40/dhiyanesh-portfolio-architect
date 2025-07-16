@@ -85,22 +85,22 @@ const SkillsSection = () => {
 
   const getCardBorderColor = (color: string) => {
     switch (color) {
-      case 'blue': return 'hover:border-blue-200';
-      case 'purple': return 'hover:border-purple-200';
-      case 'green': return 'hover:border-green-200';
-      default: return 'hover:border-blue-200';
+      case 'blue': return 'hover:border-blue-200 dark:hover:border-blue-800';
+      case 'purple': return 'hover:border-purple-200 dark:hover:border-purple-800';
+      case 'green': return 'hover:border-green-200 dark:hover:border-green-800';
+      default: return 'hover:border-blue-200 dark:hover:border-blue-800';
     }
   };
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="skills" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold font-poppins text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Skills & Expertise
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-          <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto font-inter">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             Here are the technologies and tools I work with to bring ideas to life
           </p>
         </div>
@@ -109,11 +109,11 @@ const SkillsSection = () => {
           {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={category.title}
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${getCardBorderColor(category.color)} animate-fade-up`}
+              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${getCardBorderColor(category.color)} animate-fade-up bg-card border-border`}
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
               <CardHeader className="text-center pb-4">
-                <CardTitle className="text-xl font-poppins text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                <CardTitle className="text-xl font-poppins text-card-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                   {category.title}
                 </CardTitle>
               </CardHeader>
@@ -123,11 +123,11 @@ const SkillsSection = () => {
                     <div className="flex justify-between items-center">
                       <div className="flex items-center space-x-2">
                         <span className="text-xl">{skill.icon}</span>
-                        <span className="font-inter font-medium text-gray-700">{skill.name}</span>
+                        <span className="font-inter font-medium text-card-foreground">{skill.name}</span>
                       </div>
-                      <span className="text-sm font-inter text-gray-500">{skill.level}%</span>
+                      <span className="text-sm font-inter text-muted-foreground">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-secondary rounded-full h-2">
                       <div
                         className={`h-2 rounded-full transition-all duration-1000 ease-out ${getProgressBarColor(category.color)}`}
                         style={{
