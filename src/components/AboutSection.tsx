@@ -1,8 +1,17 @@
 
-import { MapPin, GraduationCap, Building } from 'lucide-react';
+import { MapPin, GraduationCap, Building, Download } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const AboutSection = () => {
+  const downloadResume = () => {
+    // Create a dummy resume download - replace with actual resume URL
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Replace with actual resume path
+    link.download = 'Dhiyanesh_B_Resume.pdf';
+    link.click();
+  };
+
   return (
     <section id="about" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,6 +93,17 @@ const AboutSection = () => {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Download Resume Button */}
+            <div className="flex justify-center sm:justify-start">
+              <Button
+                onClick={downloadResume}
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
+                Download Resume
+              </Button>
             </div>
           </div>
         </div>

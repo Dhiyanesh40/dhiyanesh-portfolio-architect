@@ -1,10 +1,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Github, Globe, Palette, Server, Code, Cpu, Bot, Brain, Flame, Leaf, Wrench, Whale, Cloud, Database, Rocket, FileText } from 'lucide-react';
 
 interface Skill {
   name: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
   gradient: string;
 }
 
@@ -13,22 +14,22 @@ const SkillsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const skills: Skill[] = [
-    { name: 'Python', icon: '🐍', gradient: 'from-blue-500 to-yellow-500' },
-    { name: 'JavaScript', icon: '⚡', gradient: 'from-yellow-400 to-orange-500' },
-    { name: 'React', icon: '⚛️', gradient: 'from-blue-400 to-cyan-400' },
-    { name: 'Node.js', icon: '🟢', gradient: 'from-green-500 to-green-700' },
-    { name: 'HTML', icon: '🌐', gradient: 'from-orange-500 to-red-500' },
-    { name: 'CSS', icon: '🎨', gradient: 'from-blue-500 to-purple-500' },
-    { name: 'Machine Learning', icon: '🤖', gradient: 'from-purple-500 to-pink-500' },
-    { name: 'Deep Learning', icon: '🧠', gradient: 'from-indigo-500 to-purple-600' },
-    { name: 'TensorFlow', icon: '🔥', gradient: 'from-orange-500 to-red-600' },
-    { name: 'MongoDB', icon: '🍃', gradient: 'from-green-500 to-teal-500' },
-    { name: 'Git', icon: '🔧', gradient: 'from-orange-600 to-red-600' },
-    { name: 'Docker', icon: '🐳', gradient: 'from-blue-500 to-cyan-500' },
-    { name: 'AWS', icon: '☁️', gradient: 'from-orange-400 to-yellow-500' },
-    { name: 'PostgreSQL', icon: '🐘', gradient: 'from-blue-600 to-indigo-600' },
-    { name: 'Express.js', icon: '🚀', gradient: 'from-gray-600 to-gray-800' },
-    { name: 'TypeScript', icon: '📘', gradient: 'from-blue-600 to-blue-800' },
+    { name: 'Python', icon: Code, gradient: 'from-blue-500 to-yellow-500' },
+    { name: 'JavaScript', icon: FileText, gradient: 'from-yellow-400 to-orange-500' },
+    { name: 'React', icon: Cpu, gradient: 'from-blue-400 to-cyan-400' },
+    { name: 'Node.js', icon: Server, gradient: 'from-green-500 to-green-700' },
+    { name: 'HTML', icon: Globe, gradient: 'from-orange-500 to-red-500' },
+    { name: 'CSS', icon: Palette, gradient: 'from-blue-500 to-purple-500' },
+    { name: 'Machine Learning', icon: Bot, gradient: 'from-purple-500 to-pink-500' },
+    { name: 'Deep Learning', icon: Brain, gradient: 'from-indigo-500 to-purple-600' },
+    { name: 'TensorFlow', icon: Flame, gradient: 'from-orange-500 to-red-600' },
+    { name: 'MongoDB', icon: Leaf, gradient: 'from-green-500 to-teal-500' },
+    { name: 'Git', icon: Github, gradient: 'from-orange-600 to-red-600' },
+    { name: 'Docker', icon: Whale, gradient: 'from-blue-500 to-cyan-500' },
+    { name: 'AWS', icon: Cloud, gradient: 'from-orange-400 to-yellow-500' },
+    { name: 'PostgreSQL', icon: Database, gradient: 'from-blue-600 to-indigo-600' },
+    { name: 'Express.js', icon: Rocket, gradient: 'from-gray-600 to-gray-800' },
+    { name: 'TypeScript', icon: FileText, gradient: 'from-blue-600 to-blue-800' },
   ];
 
   useEffect(() => {
@@ -69,8 +70,8 @@ const SkillsSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6 flex flex-col items-center space-y-3">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${skill.gradient} flex items-center justify-center text-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                  {skill.icon}
+                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${skill.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                  <skill.icon className="text-white" size={24} />
                 </div>
                 <h3 className="text-sm font-medium text-card-foreground text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                   {skill.name}

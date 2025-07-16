@@ -1,8 +1,17 @@
 
-import { Mail, Linkedin, Github, MapPin, Code } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Linkedin, Github, MapPin, Code, Download, Send } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
   const contactInfo = [
     {
       icon: Mail,
@@ -41,6 +50,29 @@ const ContactSection = () => {
     }
   ];
 
+  const downloadResume = () => {
+    // Create a dummy resume download - replace with actual resume URL
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Replace with actual resume path
+    link.download = 'Dhiyanesh_B_Resume.pdf';
+    link.click();
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    // Reset form after submission
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,35 +86,115 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Left side - Contact Info */}
           <div className="animate-fade-up">
-            <h3 className="text-2xl font-bold font-poppins text-foreground mb-6 text-center">
+            <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
               Let's Connect
             </h3>
-            <p className="text-muted-foreground font-inter mb-8 leading-relaxed text-center max-w-2xl mx-auto">
+            <p className="text-muted-foreground font-inter mb-8 leading-relaxed">
               Whether you have a project in mind, want to collaborate, or just want to say hello, 
               I'd love to hear from you. Let's create something amazing together!
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {contactInfo.map((item, index) => (
                 <Card 
                   key={item.label}
                   className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer bg-card border-border"
                   onClick={() => item.href !== '#' && window.open(item.href, '_blank')}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className={`p-4 rounded-full bg-muted group-hover:bg-muted/80 transition-colors duration-300 w-16 h-16 mx-auto mb-4 flex items-center justify-center`}>
-                      <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={24} />
+                  <CardContent className="p-4 text-center">
+                    <div className={`p-3 rounded-full bg-muted group-hover:bg-muted/80 transition-colors duration-300 w-12 h-12 mx-auto mb-3 flex items-center justify-center`}>
+                      <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
                     </div>
-                    <h4 className="font-semibold text-card-foreground font-inter mb-2">{item.label}</h4>
-                    <p className="text-sm text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 break-words">
+                    <h4 className="font-semibold text-card-foreground font-inter mb-1 text-sm">{item.label}</h4>
+                    <p className="text-xs text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 break-words">
                       {item.value}
                     </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
+
+            {/* Download Resume Button */}
+            <div className="flex justify-center">
+              <Button
+                onClick={downloadResume}
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
+                Download Resume
+              </Button>
+            </div>
+          </div>
+
+          {/* Right side - Contact Form */}
+          <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <Card className="bg-card border-border shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
+                  Send a Message
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-card-foreground mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-card-foreground mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                      placeholder="Tell me about your project or just say hello!"
+                    />
+                  </div>
+                  
+                  <Button
+                    type="submit"
+                    className="w-full group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  >
+                    <Send className="mr-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

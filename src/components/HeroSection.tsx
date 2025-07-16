@@ -1,5 +1,5 @@
 
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
 import { Button } from '@/components/ui/button';
 
@@ -13,6 +13,14 @@ const HeroSection = () => {
 
   const scrollToContact = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const downloadResume = () => {
+    // Create a dummy resume download - replace with actual resume URL
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Replace with actual resume path
+    link.download = 'Dhiyanesh_B_Resume.pdf';
+    link.click();
   };
 
   return (
@@ -47,14 +55,23 @@ const HeroSection = () => {
               Passionate about transforming data into insights and building intelligent systems.
             </p>
 
-            {/* CTA Button */}
-            <div className="flex justify-center lg:justify-start">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 onClick={scrollToContact}
                 className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 Hire Me
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
+              </Button>
+              
+              <Button
+                onClick={downloadResume}
+                variant="outline"
+                className="group border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
+                Download Resume
               </Button>
             </div>
           </div>
