@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Code, Download, Send } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, Code, Download, Send, Twitter } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -33,6 +33,13 @@ const ContactSection = () => {
       value: 'github.com/Dhiyanesh40',
       href: 'https://github.com/Dhiyanesh40',
       color: 'text-gray-700 dark:text-gray-300'
+    },
+    {
+      icon: Twitter,
+      label: 'Twitter/X',
+      value: 'x.com/Dhiyanesh_19',
+      href: 'https://x.com/Dhiyanesh_19?t=-DYxelikuCVSUrjcTN1aIQ&s=08',
+      color: 'text-blue-500'
     },
     {
       icon: Code,
