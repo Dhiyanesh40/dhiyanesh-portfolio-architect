@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Github, Globe, Palette, Server, Code, Cpu, Bot, Brain, Flame, Leaf, Wrench, Whale, Cloud, Database, Rocket, FileText } from 'lucide-react';
+import { Github, Globe, Palette, Server, Code, Cpu, Bot, Brain, Flame, Leaf, Wrench, Container, Cloud, Database, Rocket, FileText } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -25,7 +25,7 @@ const SkillsSection = () => {
     { name: 'TensorFlow', icon: Flame, gradient: 'from-orange-500 to-red-600' },
     { name: 'MongoDB', icon: Leaf, gradient: 'from-green-500 to-teal-500' },
     { name: 'Git', icon: Github, gradient: 'from-orange-600 to-red-600' },
-    { name: 'Docker', icon: Whale, gradient: 'from-blue-500 to-cyan-500' },
+    { name: 'Docker', icon: Container, gradient: 'from-blue-500 to-cyan-500' },
     { name: 'AWS', icon: Cloud, gradient: 'from-orange-400 to-yellow-500' },
     { name: 'PostgreSQL', icon: Database, gradient: 'from-blue-600 to-indigo-600' },
     { name: 'Express.js', icon: Rocket, gradient: 'from-gray-600 to-gray-800' },
