@@ -27,7 +27,7 @@ const AboutSection = () => {
           <div className="flex justify-center animate-fade-up">
             <div className="relative">
               <img
-                src="https://image.lexica.art/full_jpg/03fd6ca2-02d8-40fd-bc57-0fbeb42a4e63"
+                src="/ghibli-programmer.jpg"
                 alt="Dhiyanesh B at work"
                 className="rounded-2xl shadow-2xl w-full max-w-md"
               />
