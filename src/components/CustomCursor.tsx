@@ -48,7 +48,9 @@ const CustomCursor = () => {
         className="fixed top-0 left-0 w-32 h-32 pointer-events-none z-20 opacity-60 transition-all duration-500 ease-out"
         style={{
           transform: `translate(${position.x - 64}px, ${position.y - 64}px)`,
-          background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(147,51,234,0.2) 40%, transparent 70%)',
+          background: document.documentElement.classList.contains('dark') 
+            ? 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(147,51,234,0.2) 40%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(59,130,246,0.4) 0%, rgba(99,102,241,0.3) 40%, transparent 70%)',
           filter: 'blur(20px)',
           scale: isHovering ? '1.3' : '1',
           mixBlendMode: 'difference',
@@ -66,8 +68,12 @@ const CustomCursor = () => {
           transform: `translate(${position.x - 32}px, ${position.y - 32}px)`,
           mixBlendMode: 'difference',
           boxShadow: isHovering 
-            ? '0 0 30px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(59, 130, 246, 0.2)' 
-            : '0 0 20px rgba(59, 130, 246, 0.3)'
+            ? (document.documentElement.classList.contains('dark')
+                ? '0 0 30px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(59, 130, 246, 0.2)'
+                : '0 0 30px rgba(59, 130, 246, 0.5), inset 0 0 20px rgba(99, 102, 241, 0.2)')
+            : (document.documentElement.classList.contains('dark')
+                ? '0 0 20px rgba(59, 130, 246, 0.3)'
+                : '0 0 20px rgba(99, 102, 241, 0.3)')
         }}
       />
       
@@ -75,15 +81,19 @@ const CustomCursor = () => {
       <div
         className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 transition-all duration-100 ease-out ${
           isHovering 
-            ? 'scale-150 bg-cyan-400' 
-            : 'bg-cyan-400'
+            ? (document.documentElement.classList.contains('dark') ? 'scale-150 bg-cyan-400' : 'scale-150 bg-blue-500')
+            : (document.documentElement.classList.contains('dark') ? 'bg-cyan-400' : 'bg-blue-500')
         }`}
         style={{
           transform: `translate(${position.x - 16}px, ${position.y - 16}px)`,
           mixBlendMode: 'difference',
           boxShadow: isHovering 
-            ? '0 0 25px rgba(34, 211, 238, 0.8), 0 0 50px rgba(59, 130, 246, 0.6), 0 0 75px rgba(147, 51, 234, 0.4)' 
-            : '0 0 20px rgba(34, 211, 238, 0.7), 0 0 40px rgba(59, 130, 246, 0.5)'
+            ? (document.documentElement.classList.contains('dark')
+                ? '0 0 25px rgba(34, 211, 238, 0.8), 0 0 50px rgba(59, 130, 246, 0.6), 0 0 75px rgba(147, 51, 234, 0.4)'
+                : '0 0 25px rgba(59, 130, 246, 0.8), 0 0 50px rgba(99, 102, 241, 0.6), 0 0 75px rgba(139, 92, 246, 0.4)')
+            : (document.documentElement.classList.contains('dark')
+                ? '0 0 20px rgba(34, 211, 238, 0.7), 0 0 40px rgba(59, 130, 246, 0.5)'
+                : '0 0 20px rgba(59, 130, 246, 0.7), 0 0 40px rgba(99, 102, 241, 0.5)')
         }}
       />
     </>

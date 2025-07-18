@@ -67,8 +67,7 @@ const HeroSection = () => {
               
               <Button
                 onClick={downloadResume}
-                variant="outline"
-                className="group border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
                 Download Resume
