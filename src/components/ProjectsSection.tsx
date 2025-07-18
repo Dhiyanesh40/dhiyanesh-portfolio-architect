@@ -78,6 +78,16 @@ const ProjectsSection = () => {
       liveDemo: '#',
       github: '#',
       category: 'Full Stack'
+    },
+    {
+      id: 7,
+      title: 'AI Image Recognition System',
+      description: 'Deep learning model for image classification and object detection with real-time processing capabilities.',
+      image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop',
+      technologies: ['Python', 'TensorFlow', 'OpenCV', 'FastAPI', 'Docker'],
+      liveDemo: '#',
+      github: '#',
+      category: 'Computer Vision'
     }
   ];
 
