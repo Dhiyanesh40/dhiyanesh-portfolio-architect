@@ -103,12 +103,12 @@ const EducationSection = () => {
                     </p>
                   </div>
                   {edu.score ? (
-                    <div className="flex items-center space-x-2 bg-muted rounded-lg px-3 py-2">
+                    <div className="flex items-center justify-center space-x-2 bg-muted rounded-lg px-3 py-2 w-40">
                       <Award className="text-yellow-500" size={16} />
                       <span className="font-semibold text-card-foreground">{edu.score}</span>
                     </div>
                   ) : (
-                    <div className="flex items-center space-x-2 bg-orange-100 dark:bg-orange-900 rounded-lg px-3 py-2">
+                    <div className="flex items-center justify-center space-x-2 bg-orange-100 dark:bg-orange-900 rounded-lg px-3 py-2 w-40">
                       <Award className="text-orange-600 dark:text-orange-400" size={16} />
                       <span className="font-semibold text-orange-600 dark:text-orange-400">All Pass (COVID-19)</span>
                     </div>

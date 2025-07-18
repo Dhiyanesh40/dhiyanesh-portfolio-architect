@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { ExternalLink, Github, Eye } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,6 +16,8 @@ interface Project {
 }
 
 const ProjectsSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  
   const projects: Project[] = [
     {
       id: 1,
@@ -78,6 +81,8 @@ const ProjectsSection = () => {
     }
   ];
 
+  const displayedProjects = showAll ? projects : projects.slice(0, 6);
+
   return (
     <section id="projects" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +97,7 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <Card 
               key={project.id}
               className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden animate-fade-up bg-card border-border"
@@ -158,7 +163,19 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {projects.length > 6 && (
+          <div className="text-center mt-12">
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              variant="outline"
+              className="group border-2 border-border hover:border-blue-600 dark:hover:border-blue-400 text-foreground hover:text-blue-600 dark:hover:text-blue-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 mb-6"
+            >
+              {showAll ? 'Show Less' : 'Show More Projects'}
+            </Button>
+          </div>
+        )}
+
+        <div className="text-center mt-6">
           <Button
             onClick={() => window.open('https://github.com/Dhiyanesh40', '_blank')}
             variant="outline"
