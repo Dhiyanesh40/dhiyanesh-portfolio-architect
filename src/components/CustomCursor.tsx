@@ -55,15 +55,15 @@ const CustomCursor = () => {
         }}
       />
       
-      {/* Outer smooth ring */}
+      {/* Outer cursor ring */}
       <div
-        className={`fixed top-0 left-0 w-10 h-10 border-2 rounded-full pointer-events-none z-40 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 w-16 h-16 border-2 rounded-full pointer-events-none z-40 transition-all duration-300 ease-out ${
           isHovering 
-            ? 'scale-150 border-cyan-300/60 bg-cyan-400/10' 
+            ? 'scale-200 border-cyan-300/60 bg-cyan-400/10' 
             : 'border-blue-300/40 bg-blue-400/5'
         }`}
         style={{
-          transform: `translate(${position.x - 20}px, ${position.y - 20}px)`,
+          transform: `translate(${position.x - 32}px, ${position.y - 32}px)`,
           mixBlendMode: 'difference',
           boxShadow: isHovering 
             ? '0 0 30px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(59, 130, 246, 0.2)' 
@@ -71,15 +71,15 @@ const CustomCursor = () => {
         }}
       />
       
-      {/* Inner round dot with neon blue and glow */}
+      {/* Main cursor dot */}
       <div
-        className={`fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-50 transition-all duration-200 ease-out ${
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 transition-all duration-100 ease-out ${
           isHovering 
             ? 'scale-150 bg-cyan-400' 
             : 'bg-cyan-400'
         }`}
         style={{
-          transform: `translate(${position.x - 6}px, ${position.y - 6}px)`,
+          transform: `translate(${position.x - 16}px, ${position.y - 16}px)`,
           mixBlendMode: 'difference',
           boxShadow: isHovering 
             ? '0 0 25px rgba(34, 211, 238, 0.8), 0 0 50px rgba(59, 130, 246, 0.6), 0 0 75px rgba(147, 51, 234, 0.4)' 

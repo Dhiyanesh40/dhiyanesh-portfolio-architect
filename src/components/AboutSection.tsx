@@ -27,7 +27,7 @@ const AboutSection = () => {
           <div className="flex justify-center animate-fade-up">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=600&fit=crop"
+                src="/src/assets/ghibli-programmer.jpg"
                 alt="Dhiyanesh B at work"
                 className="rounded-2xl shadow-2xl w-full max-w-md"
               />

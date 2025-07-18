@@ -22,11 +22,11 @@ const EducationSection = () => {
       institution: 'Kongu Engineering College',
       location: 'Erode',
       period: '2023-2027',
-      score: '8.5 CGPA',
+      score: '8.02 CGPA',
       level: 'Undergraduate'
     },
     {
-      degree: '12th (HSC) - Science',
+      degree: '12th (HSC) - Bio-Maths',
       institution: "Mother's Matriculation Higher Secondary School",
       location: 'Erode',
       period: '2022-2023',
@@ -102,10 +102,15 @@ const EducationSection = () => {
                       {edu.institution}
                     </p>
                   </div>
-                  {edu.score && (
+                  {edu.score ? (
                     <div className="flex items-center space-x-2 bg-muted rounded-lg px-3 py-2">
                       <Award className="text-yellow-500" size={16} />
                       <span className="font-semibold text-card-foreground">{edu.score}</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center space-x-2 bg-orange-100 dark:bg-orange-900 rounded-lg px-3 py-2">
+                      <Award className="text-orange-600 dark:text-orange-400" size={16} />
+                      <span className="font-semibold text-orange-600 dark:text-orange-400">All Pass (COVID-19)</span>
                     </div>
                   )}
                 </div>
@@ -120,12 +125,6 @@ const EducationSection = () => {
                     <MapPin size={16} />
                     <span>{edu.location}</span>
                   </div>
-                  {!edu.score && (
-                    <div className="flex items-center space-x-2 text-orange-600 dark:text-orange-400">
-                      <Award size={16} />
-                      <span>All Pass (COVID-19)</span>
-                    </div>
-                  )}
                 </div>
               </CardContent>
             </Card>
