@@ -17,7 +17,7 @@ const ContactSection = () => {
       icon: Mail,
       label: 'Email',
       value: 'dhiyaneshb.23aid@kongu.edu',
-      href: 'mailto:dhiyaneshb.23aid@kongu.edu',
+      href: 'https://mail.google.com/mail/u/0/?to=dhiyaneshb.23aid@kongu.edu&fs=1&tf=cm',
       color: 'text-red-500'
     },
     {

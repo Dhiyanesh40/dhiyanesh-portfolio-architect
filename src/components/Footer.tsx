@@ -28,25 +28,25 @@ const Footer = () => {
     },
     {
       icon: Instagram,
-      href: 'https://instagram.com/dhiyanesh_b',
+      href: 'https://instagram.com/dhiyanesh_19',
       label: 'Instagram',
       color: 'hover:text-pink-500'
     },
     {
       icon: MessageCircle,
-      href: 'https://wa.me/+919876543210',
+      href: 'https://wa.me/+919361426949',
       label: 'WhatsApp',
       color: 'hover:text-green-500'
     },
     {
       icon: Mail,
-      href: 'mailto:dhiyaneshb.23aid@kongu.edu',
+      href: 'https://mail.google.com/mail/u/0/?to=dhiyaneshb.23aid@kongu.edu&fs=1&tf=cm',
       label: 'Email',
       color: 'hover:text-red-500'
     },
     {
       icon: Phone,
-      href: 'tel:+919876543210',
+      href: 'tel:+919361426949',
       label: 'Phone',
       color: 'hover:text-blue-500'
     }
