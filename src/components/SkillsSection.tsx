@@ -65,7 +65,7 @@ const SkillsSection = () => {
           {skills.map((skill, index) => (
             <Card 
               key={skill.name}
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 animate-fade-up bg-card border-border cursor-pointer`}
+              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 animate-fade-up bg-card border-border`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6 flex flex-col items-center space-y-3">
