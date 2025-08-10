@@ -7,7 +7,11 @@ import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import LeetcodeSection from '@/components/LeetcodeSection';
-import CodingPlatformsSection from '@/components/CodingPlatformsSection';
+import HackerRankSection from '@/components/HackerRankSection';
+import HackerEarthSection from '@/components/HackerEarthSection';
+import CodeChefSection from '@/components/CodeChefSection';
+import CodeforcesSection from '@/components/CodeforcesSection';
+import GitHubSection from '@/components/GitHubSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import EducationSection from '@/components/EducationSection';
 import ContactSection from '@/components/ContactSection';
@@ -62,7 +66,11 @@ const Index = () => {
       <SkillsSection />
       <ProjectsSection />
       <LeetcodeSection />
-      <CodingPlatformsSection />
+      <HackerRankSection />
+      <HackerEarthSection />
+      <CodeChefSection />
+      <CodeforcesSection />
+      <GitHubSection />
       <CertificationsSection />
       <EducationSection />
       <ContactSection />
