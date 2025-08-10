@@ -48,6 +48,7 @@ const Navigation = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Leetcode', href: '#leetcode' },
+    { name: 'Coding Platforms', href: '#coding-platforms' },
     { name: 'Certifications', href: '#certifications' },
     { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },

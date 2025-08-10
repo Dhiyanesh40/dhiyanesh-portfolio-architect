@@ -3,15 +3,17 @@ import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Trophy, Target, Zap, Code } from 'lucide-react';
+import { useCodingStats } from '@/hooks/useCodingStats';
 
 const LeetcodeSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { leetcodeStats, loading } = useCodingStats();
 
   const stats = [
     {
       label: 'Problems Solved',
-      value: '150+',
+      value: leetcodeStats?.totalSolved || '150+',
       icon: Code,
       color: 'from-green-500 to-emerald-500',
       description: 'Across all difficulty levels'
@@ -31,18 +33,33 @@ const LeetcodeSection = () => {
       description: 'Weekly and biweekly contests'
     },
     {
-      label: 'Streak',
-      value: '45 days',
+      label: 'Acceptance Rate',
+      value: leetcodeStats?.acceptanceRate ? `${leetcodeStats.acceptanceRate}%` : '87.5%',
       icon: Zap,
       color: 'from-purple-500 to-pink-500',
-      description: 'Current solving streak'
+      description: 'Overall acceptance rate'
     }
   ];
 
   const difficultyStats = [
-    { level: 'Easy', solved: 75, total: 100, color: 'bg-green-500' },
-    { level: 'Medium', solved: 60, total: 80, color: 'bg-yellow-500' },
-    { level: 'Hard', solved: 15, total: 25, color: 'bg-red-500' }
+    { 
+      level: 'Easy', 
+      solved: leetcodeStats?.easySolved || 75, 
+      total: 100, 
+      color: 'bg-green-500' 
+    },
+    { 
+      level: 'Medium', 
+      solved: leetcodeStats?.mediumSolved || 60, 
+      total: 80, 
+      color: 'bg-yellow-500' 
+    },
+    { 
+      level: 'Hard', 
+      solved: leetcodeStats?.hardSolved || 15, 
+      total: 25, 
+      color: 'bg-red-500' 
+    }
   ];
 
   useEffect(() => {
@@ -71,7 +88,7 @@ const LeetcodeSection = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
-            My competitive programming journey and problem-solving skills
+            {loading ? 'Loading real-time LeetCode statistics...' : 'My competitive programming journey and problem-solving skills'}
           </p>
         </div>
 
