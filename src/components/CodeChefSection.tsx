@@ -155,7 +155,7 @@ const CodeChefSection = () => {
             <CardContent>
               <div className="overflow-x-auto">
                 <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(codechefStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
+                  {(Array.isArray(codechefStats?.submissionCalendar) ? codechefStats.submissionCalendar : []).map((week: number[], weekIndex: number) => 
                     week.map((day: number, dayIndex: number) => (
                       <div
                         key={`${weekIndex}-${dayIndex}`}

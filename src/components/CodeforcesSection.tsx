@@ -155,7 +155,7 @@ const CodeforcesSection = () => {
             <CardContent>
               <div className="overflow-x-auto">
                 <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(codeforcesStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
+                  {(Array.isArray(codeforcesStats?.submissionCalendar) ? codeforcesStats.submissionCalendar : []).map((week: number[], weekIndex: number) => 
                     week.map((day: number, dayIndex: number) => (
                       <div
                         key={`${weekIndex}-${dayIndex}`}
