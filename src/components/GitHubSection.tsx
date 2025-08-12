@@ -145,8 +145,8 @@ const GitHubSection = () => {
             <CardContent>
               <div className="overflow-x-auto">
                 <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {contributionData.map((week, weekIndex) => 
-                    week.map((day, dayIndex) => (
+                  {(githubStats?.contributionCalendar || contributionData).map((week: number[], weekIndex: number) => 
+                    week.map((day: number, dayIndex: number) => (
                       <div
                         key={`${weekIndex}-${dayIndex}`}
                         className={`w-3 h-3 rounded-sm ${getContributionColor(day)} transition-opacity duration-300`}

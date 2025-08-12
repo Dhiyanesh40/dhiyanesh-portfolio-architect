@@ -73,7 +73,7 @@ const CodeChefSection = () => {
   }, []);
 
   return (
-    <section id="codechef" ref={sectionRef} className="py-20 bg-muted/30">
+    <section id="codechef" ref={sectionRef} className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
@@ -111,8 +111,9 @@ const CodeChefSection = () => {
           ))}
         </div>
 
-        {/* Rating Progress */}
-        <div className="max-w-4xl mx-auto">
+        {/* Rating Progress & Submission Calendar */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {/* Rating Progress */}
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
@@ -141,18 +142,61 @@ const CodeChefSection = () => {
                   </div>
                 </div>
               ))}
-              
-              <div className="pt-6 text-center">
-                <Button
-                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-                  onClick={() => window.open('https://www.codechef.com/users/dhiyanesh_40', '_blank')}
-                >
-                  <ExternalLink size={16} className="mr-2" />
-                  View CodeChef Profile
-                </Button>
+            </CardContent>
+          </Card>
+
+          {/* Submission Calendar */}
+          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.6s' }}>
+            <CardHeader>
+              <CardTitle className="text-center text-card-foreground">
+                Submission Activity
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
+                  {(codechefStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
+                    week.map((day: number, dayIndex: number) => (
+                      <div
+                        key={`${weekIndex}-${dayIndex}`}
+                        className={`w-3 h-3 rounded-sm transition-opacity duration-300 ${
+                          day === 0 ? 'bg-muted/30' :
+                          day === 1 ? 'bg-orange-200 dark:bg-orange-900/40' :
+                          day === 2 ? 'bg-orange-300 dark:bg-orange-800/60' :
+                          day === 3 ? 'bg-orange-400 dark:bg-orange-700/80' :
+                          'bg-orange-500 dark:bg-orange-600'
+                        }`}
+                        style={{
+                          opacity: isVisible ? 1 : 0,
+                          transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
+                        }}
+                        title={`${day} submissions`}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
+                <span>Aug</span>
+                <span>Oct</span>
+                <span>Dec</span>
+                <span>Feb</span>
+                <span>Apr</span>
+                <span>Jun</span>
+                <span>Aug</span>
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        <div className="text-center mt-12">
+          <Button
+            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+            onClick={() => window.open('https://www.codechef.com/users/dhiyanesh_40', '_blank')}
+          >
+            <ExternalLink size={16} className="mr-2" />
+            View CodeChef Profile
+          </Button>
         </div>
       </div>
     </section>
