@@ -58,7 +58,7 @@ export const useCodingStats = () => {
       })
     } catch (err) {
       console.error('Error fetching LeetCode stats:', err)
-      // Fallback data with proper array
+      // Fallback data
       setLeetcodeStats({
         totalSolved: 150,
         easySolved: 75,
@@ -153,17 +153,32 @@ export const useCodingStats = () => {
           break
           
         case 'codechef':
-          // Skip external API to avoid CORS issues, use fallback data
-          data = {
-            username,
-            currentRating: 1534,
-            highestRating: 1678,
-            stars: '3⭐',
-            globalRank: 15234,
-            countryRank: 2456,
-            contestsParticipated: 23,
-            problemsSolved: 156,
-            submissionCalendar: generateSubmissionCalendar('codechef')
+          try {
+            const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`)
+            const codechefData = await response.json()
+            data = {
+              username: codechefData.username || username,
+              currentRating: codechefData.currentRating || 1534,
+              highestRating: codechefData.highestRating || 1678,
+              stars: codechefData.stars || '3⭐',
+              globalRank: codechefData.globalRank || 15234,
+              countryRank: codechefData.countryRank || 2456,
+              contestsParticipated: codechefData.contestsParticipated || 23,
+              problemsSolved: codechefData.problemsSolved || 156,
+              submissionCalendar: generateSubmissionCalendar('codechef')
+            }
+          } catch {
+            data = {
+              username,
+              currentRating: 1534,
+              highestRating: 1678,
+              stars: '3⭐',
+              globalRank: 15234,
+              countryRank: 2456,
+              contestsParticipated: 23,
+              problemsSolved: 156,
+              submissionCalendar: generateSubmissionCalendar('codechef')
+            }
           }
           break
           

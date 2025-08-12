@@ -131,7 +131,7 @@ const HackerEarthSection = () => {
             <CardContent>
               <div className="overflow-x-auto">
                 <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(Array.isArray(hackerearthStats?.submissionCalendar) ? hackerearthStats.submissionCalendar : []).map((week: number[], weekIndex: number) => 
+                  {(hackerearthStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
                     week.map((day: number, dayIndex: number) => (
                       <div
                         key={`${weekIndex}-${dayIndex}`}

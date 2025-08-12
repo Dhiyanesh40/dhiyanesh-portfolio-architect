@@ -162,7 +162,7 @@ const LeetcodeSection = () => {
             <CardContent>
               <div className="overflow-x-auto">
                 <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(Array.isArray(leetcodeStats?.submissionCalendar) ? leetcodeStats.submissionCalendar : []).map((week: number[], weekIndex: number) => 
+                  {(leetcodeStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
                     week.map((day: number, dayIndex: number) => (
                       <div
                         key={`${weekIndex}-${dayIndex}`}
