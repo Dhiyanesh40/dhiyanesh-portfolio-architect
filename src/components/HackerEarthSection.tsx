@@ -98,9 +98,8 @@ const HackerEarthSection = () => {
           ))}
         </div>
 
-        {/* Badges & Submission Calendar */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Badges */}
+        {/* Badges */}
+        <div className="max-w-4xl mx-auto">
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
@@ -118,61 +117,18 @@ const HackerEarthSection = () => {
                   </div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Submission Calendar */}
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.6s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                Submission Activity
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(hackerearthStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
-                    week.map((day: number, dayIndex: number) => (
-                      <div
-                        key={`${weekIndex}-${dayIndex}`}
-                        className={`w-3 h-3 rounded-sm transition-opacity duration-300 ${
-                          day === 0 ? 'bg-muted/30' :
-                          day === 1 ? 'bg-blue-200 dark:bg-blue-900/40' :
-                          day === 2 ? 'bg-blue-300 dark:bg-blue-800/60' :
-                          day === 3 ? 'bg-blue-400 dark:bg-blue-700/80' :
-                          'bg-blue-500 dark:bg-blue-600'
-                        }`}
-                        style={{
-                          opacity: isVisible ? 1 : 0,
-                          transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                        }}
-                        title={`${day} submissions`}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                <span>Aug</span>
-                <span>Oct</span>
-                <span>Dec</span>
-                <span>Feb</span>
-                <span>Apr</span>
-                <span>Jun</span>
-                <span>Aug</span>
+              
+              <div className="pt-6 text-center">
+                <Button
+                  className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                  onClick={() => window.open('https://www.hackerearth.com/@dhiyaneshb.23aid', '_blank')}
+                >
+                  <ExternalLink size={16} className="mr-2" />
+                  View HackerEarth Profile
+                </Button>
               </div>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="text-center mt-12">
-          <Button
-            className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
-            onClick={() => window.open('https://www.hackerearth.com/@dhiyaneshb.23aid', '_blank')}
-          >
-            <ExternalLink size={16} className="mr-2" />
-            View HackerEarth Profile
-          </Button>
         </div>
       </div>
     </section>

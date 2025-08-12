@@ -118,9 +118,8 @@ const LeetcodeSection = () => {
           ))}
         </div>
 
-        {/* Difficulty Breakdown & Submission Calendar */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Difficulty Breakdown */}
+        {/* Difficulty Breakdown */}
+        <div className="max-w-4xl mx-auto">
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
@@ -149,61 +148,18 @@ const LeetcodeSection = () => {
                   </div>
                 </div>
               ))}
-            </CardContent>
-          </Card>
-
-          {/* Submission Calendar */}
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.6s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                Submission Activity
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {(leetcodeStats?.submissionCalendar || []).map((week: number[], weekIndex: number) => 
-                    week.map((day: number, dayIndex: number) => (
-                      <div
-                        key={`${weekIndex}-${dayIndex}`}
-                        className={`w-3 h-3 rounded-sm transition-opacity duration-300 ${
-                          day === 0 ? 'bg-muted/30' :
-                          day === 1 ? 'bg-yellow-200 dark:bg-yellow-900/40' :
-                          day === 2 ? 'bg-yellow-300 dark:bg-yellow-800/60' :
-                          day === 3 ? 'bg-yellow-400 dark:bg-yellow-700/80' :
-                          'bg-yellow-500 dark:bg-yellow-600'
-                        }`}
-                        style={{
-                          opacity: isVisible ? 1 : 0,
-                          transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                        }}
-                        title={`${day} submissions`}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                <span>Aug</span>
-                <span>Oct</span>
-                <span>Dec</span>
-                <span>Feb</span>
-                <span>Apr</span>
-                <span>Jun</span>
-                <span>Aug</span>
+              
+              <div className="pt-6 text-center">
+                <Button
+                  className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white"
+                  onClick={() => window.open('https://leetcode.com/u/23ADR040/', '_blank')}
+                >
+                  <ExternalLink size={16} className="mr-2" />
+                  View LeetCode Profile
+                </Button>
               </div>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="text-center mt-12">
-          <Button
-            className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white"
-            onClick={() => window.open('https://leetcode.com/u/23ADR040/', '_blank')}
-          >
-            <ExternalLink size={16} className="mr-2" />
-            View LeetCode Profile
-          </Button>
         </div>
       </div>
     </section>

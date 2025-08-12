@@ -17,29 +17,6 @@ export const useCodingStats = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Generate mock submission calendar data for visualization
-  const generateSubmissionCalendar = (platform: string) => {
-    const weeks = 52;
-    const days = 7;
-    const data = [];
-    
-    for (let week = 0; week < weeks; week++) {
-      const weekData = [];
-      for (let day = 0; day < days; day++) {
-        // Simulate realistic submission patterns based on platform
-        let maxSubmissions = 4;
-        if (platform === 'leetcode') maxSubmissions = 6;
-        if (platform === 'github') maxSubmissions = 8;
-        
-        const submissions = Math.floor(Math.random() * (maxSubmissions + 1));
-        weekData.push(submissions);
-      }
-      data.push(weekData);
-    }
-    
-    return data;
-  };
-
   const fetchLeetcodeStats = async () => {
     try {
       // For now, use direct API call since Supabase functions might not be deployed
@@ -53,8 +30,7 @@ export const useCodingStats = () => {
         mediumSolved: data.mediumSolved || 60,
         hardSolved: data.hardSolved || 15,
         acceptanceRate: data.acceptanceRate || 87.5,
-        ranking: data.ranking || 245678,
-        submissionCalendar: data.submissionCalendar || generateSubmissionCalendar('leetcode')
+        ranking: data.ranking || 245678
       })
     } catch (err) {
       console.error('Error fetching LeetCode stats:', err)
@@ -65,8 +41,7 @@ export const useCodingStats = () => {
         mediumSolved: 60,
         hardSolved: 15,
         acceptanceRate: 87.5,
-        ranking: 245678,
-        submissionCalendar: generateSubmissionCalendar('leetcode')
+        ranking: 245678
       })
     }
   }
@@ -99,8 +74,7 @@ export const useCodingStats = () => {
         topLanguages: Object.entries(languages)
           .sort(([,a], [,b]) => (b as number) - (a as number))
           .slice(0, 5)
-          .map(([lang, count]) => ({ language: lang, count })),
-        contributionCalendar: generateSubmissionCalendar('github')
+          .map(([lang, count]) => ({ language: lang, count }))
       })
     } catch (err) {
       console.error('Error fetching GitHub stats:', err)
@@ -115,8 +89,7 @@ export const useCodingStats = () => {
           { language: 'Python', count: 8 },
           { language: 'JavaScript', count: 6 },
           { language: 'TypeScript', count: 4 }
-        ],
-        contributionCalendar: generateSubmissionCalendar('github')
+        ]
       })
     }
   }
@@ -147,8 +120,7 @@ export const useCodingStats = () => {
             contestsParticipated: 12,
             problemsSolved: 89,
             badges: ['Fast Coder', 'Problem Solver'],
-            level: 'Intermediate',
-            submissionCalendar: generateSubmissionCalendar('hackerearth')
+            level: 'Intermediate'
           }
           break
           
@@ -164,8 +136,7 @@ export const useCodingStats = () => {
               globalRank: codechefData.globalRank || 15234,
               countryRank: codechefData.countryRank || 2456,
               contestsParticipated: codechefData.contestsParticipated || 23,
-              problemsSolved: codechefData.problemsSolved || 156,
-              submissionCalendar: generateSubmissionCalendar('codechef')
+              problemsSolved: codechefData.problemsSolved || 156
             }
           } catch {
             data = {
@@ -176,8 +147,7 @@ export const useCodingStats = () => {
               globalRank: 15234,
               countryRank: 2456,
               contestsParticipated: 23,
-              problemsSolved: 156,
-              submissionCalendar: generateSubmissionCalendar('codechef')
+              problemsSolved: 156
             }
           }
           break
@@ -195,8 +165,7 @@ export const useCodingStats = () => {
                 rank: user.rank || 'Pupil',
                 maxRank: user.maxRank || 'Specialist',
                 contribution: user.contribution || 45,
-                friendOfCount: user.friendOfCount || 12,
-                submissionCalendar: generateSubmissionCalendar('codeforces')
+                friendOfCount: user.friendOfCount || 12
               }
             } else {
               throw new Error('User not found')
@@ -209,8 +178,7 @@ export const useCodingStats = () => {
               rank: 'Pupil',
               maxRank: 'Specialist',
               contribution: 45,
-              friendOfCount: 12,
-              submissionCalendar: generateSubmissionCalendar('codeforces')
+              friendOfCount: 12
             }
           }
           break
