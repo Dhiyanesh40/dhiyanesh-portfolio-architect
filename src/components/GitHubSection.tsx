@@ -12,59 +12,49 @@ const GitHubSection = () => {
   const stats = [
     {
       label: 'Public Repos',
-      value: githubStats?.publicRepos || '25',
+      value: githubStats?.publicRepos?.toString() || 'N/A',
       icon: Code,
       color: 'from-gray-600 to-gray-800',
       description: 'Open source repositories'
     },
     {
       label: 'Followers',
-      value: githubStats?.followers || '45',
+      value: githubStats?.followers?.toString() || 'N/A',
       icon: Users,
       color: 'from-blue-500 to-purple-500',
       description: 'GitHub community followers'
     },
     {
       label: 'Total Stars',
-      value: githubStats?.totalStars || '128',
+      value: githubStats?.totalStars?.toString() || 'N/A',
       icon: Star,
       color: 'from-yellow-500 to-orange-500',
       description: 'Stars across all repositories'
     },
     {
       label: 'Total Forks',
-      value: githubStats?.totalForks || '67',
+      value: githubStats?.totalForks?.toString() || 'N/A',
       icon: GitBranch,
       color: 'from-green-500 to-emerald-500',
       description: 'Forks across all repositories'
     }
   ];
 
-  // GitHub-style contribution calendar (simplified)
+  // Generate real contribution calendar from GitHub data
   const generateContributionData = () => {
-    const weeks = 52;
-    const days = 7;
-    const data = [];
+    if (!githubStats?.contributionCalendar) return []
     
-    for (let week = 0; week < weeks; week++) {
-      const weekData = [];
-      for (let day = 0; day < days; day++) {
-        const contributions = Math.floor(Math.random() * 5); // 0-4 contributions
-        weekData.push(contributions);
-      }
-      data.push(weekData);
-    }
-    
-    return data;
-  };
+    const weeks = githubStats.contributionCalendar.weeks || []
+    return weeks.map(week => 
+      week.contributionDays.map(day => ({
+        date: day.date,
+        count: day.contributionCount
+      }))
+    )
+  }
 
-  const [contributionData] = useState(generateContributionData());
-  const topLanguages = githubStats?.topLanguages || [
-    { language: 'JavaScript', count: 8 },
-    { language: 'Python', count: 6 },
-    { language: 'TypeScript', count: 4 },
-    { language: 'Java', count: 3 }
-  ];
+  const contributionData = generateContributionData()
+  const topLanguages = githubStats?.topLanguages || []
 
   const getContributionColor = (level: number) => {
     const colors = [
@@ -139,36 +129,52 @@ const GitHubSection = () => {
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
-                308 contributions in the past year
+                {githubStats?.error 
+                  ? 'GitHub Data Unavailable' 
+                  : githubStats?.totalContributions 
+                    ? `${githubStats.totalContributions} contributions in the past year`
+                    : 'GitHub Contributions'
+                }
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
-                <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                  {contributionData.map((week, weekIndex) => 
-                    week.map((day, dayIndex) => (
-                      <div
-                        key={`${weekIndex}-${dayIndex}`}
-                        className={`w-3 h-3 rounded-sm ${getContributionColor(day)} transition-opacity duration-300`}
-                        style={{
-                          opacity: isVisible ? 1 : 0,
-                          transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                        }}
-                        title={`${day} contributions`}
-                      />
-                    ))
-                  )}
+              {githubStats?.error ? (
+                <div className="text-center py-8">
+                  <p className="text-muted-foreground">{githubStats.error}</p>
                 </div>
-              </div>
-              <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                <span>Aug</span>
-                <span>Oct</span>
-                <span>Dec</span>
-                <span>Feb</span>
-                <span>Apr</span>
-                <span>Jun</span>
-                <span>Aug</span>
-              </div>
+              ) : contributionData.length > 0 ? (
+                <>
+                  <div className="overflow-x-auto">
+                    <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
+                      {contributionData.map((week, weekIndex) => 
+                        week.map((day, dayIndex) => (
+                          <div
+                            key={`${weekIndex}-${dayIndex}`}
+                            className={`w-3 h-3 rounded-sm ${getContributionColor(day.count)} transition-opacity duration-300`}
+                            style={{
+                              opacity: isVisible ? 1 : 0,
+                              transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
+                            }}
+                            title={`${day.date}: ${day.count} contributions`}
+                          />
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
+                    <span>Jan</span>
+                    <span>Mar</span>
+                    <span>May</span>
+                    <span>Jul</span>
+                    <span>Sep</span>
+                    <span>Nov</span>
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-muted-foreground">Contribution calendar not available</p>
+                </div>
+              )}
             </CardContent>
           </Card>
 

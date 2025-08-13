@@ -9,38 +9,7 @@ const HackerRankSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { hackerrankStats, loading } = useCodingStats();
 
-  const stats = [
-    {
-      label: 'Rank',
-      value: hackerrankStats?.rank || 'Gold',
-      icon: Trophy,
-      color: 'from-yellow-500 to-orange-500',
-      description: 'Current HackerRank level'
-    },
-    {
-      label: 'Badges',
-      value: hackerrankStats?.badges || '15',
-      icon: Award,
-      color: 'from-green-500 to-emerald-500',
-      description: 'Achievement badges earned'
-    },
-    {
-      label: 'Points',
-      value: hackerrankStats?.points || '2847',
-      icon: Star,
-      color: 'from-blue-500 to-purple-500',
-      description: 'Total points accumulated'
-    },
-    {
-      label: 'Certificates',
-      value: hackerrankStats?.certificates || '8',
-      icon: Award,
-      color: 'from-purple-500 to-pink-500',
-      description: 'Skill certificates earned'
-    }
-  ];
-
-  const domains = hackerrankStats?.domains || ['Problem Solving', 'Python', 'SQL', 'Java'];
+  const isDataAvailable = !hackerrankStats?.error
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,53 +41,26 @@ const HackerRankSection = () => {
           </p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {stats.map((stat, index) => (
-            <Card 
-              key={index}
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-up bg-card border-border`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6 text-center">
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                  <stat.icon className="text-white" size={24} />
-                </div>
-                <h3 className="text-2xl font-bold text-card-foreground mb-1">
-                  {stat.value}
-                </h3>
-                <p className="text-sm font-medium text-muted-foreground mb-2">
-                  {stat.label}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {stat.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Domains */}
+        {/* Profile Access */}
         <div className="max-w-4xl mx-auto">
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
-                Domain Expertise
+                {isDataAvailable ? 'HackerRank Profile' : 'HackerRank Data Unavailable'}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {domains.map((domain, index) => (
-                  <div key={index} className="text-center p-4 rounded-lg bg-muted/30">
-                    <Code className="text-green-600 dark:text-green-400 mx-auto mb-2" size={20} />
-                    <p className="text-sm font-medium text-card-foreground">
-                      {domain}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="pt-6 text-center">
+            <CardContent>
+              <div className="text-center py-8">
+                {isDataAvailable ? (
+                  <p className="text-muted-foreground mb-6">
+                    Visit my HackerRank profile to see my latest achievements, skills, and problem-solving progress.
+                  </p>
+                ) : (
+                  <p className="text-muted-foreground mb-6">
+                    {hackerrankStats?.error || 'HackerRank public API is not available for profile statistics.'}
+                  </p>
+                )}
+                
                 <Button
                   className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white"
                   onClick={() => window.open('https://www.hackerrank.com/profile/23ADR040', '_blank')}

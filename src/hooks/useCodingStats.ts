@@ -1,11 +1,4 @@
 import { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-// Using fallback URLs for demo - in production, use proper Supabase project
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://demo.supabase.co'
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'demo-key'
-
-const supabase = createClient(supabaseUrl, supabaseKey)
 
 export const useCodingStats = () => {
   const [leetcodeStats, setLeetcodeStats] = useState<any>(null)
@@ -19,45 +12,81 @@ export const useCodingStats = () => {
 
   const fetchLeetcodeStats = async () => {
     try {
-      // For now, use direct API call since Supabase functions might not be deployed
       const response = await fetch('https://leetcode-api-faisalshohag.vercel.app/23ADR040')
-      if (!response.ok) throw new Error('Failed to fetch')
+      if (!response.ok) throw new Error('Failed to fetch LeetCode data')
       const data = await response.json()
       
-      setLeetcodeStats({
-        totalSolved: data.totalSolved || 150,
-        easySolved: data.easySolved || 75,
-        mediumSolved: data.mediumSolved || 60,
-        hardSolved: data.hardSolved || 15,
-        acceptanceRate: data.acceptanceRate || 87.5,
-        ranking: data.ranking || 245678
-      })
+      // Only use real data, no fallbacks
+      if (data && data.totalSolved !== undefined) {
+        setLeetcodeStats({
+          totalSolved: data.totalSolved,
+          easySolved: data.easySolved,
+          mediumSolved: data.mediumSolved,
+          hardSolved: data.hardSolved,
+          acceptanceRate: data.acceptanceRate,
+          ranking: data.ranking,
+          submissionCalendar: data.submissionCalendar || {},
+          recentSubmissions: data.recentSubmissions || []
+        })
+      } else {
+        setLeetcodeStats({ error: 'No data available' })
+      }
     } catch (err) {
       console.error('Error fetching LeetCode stats:', err)
-      // Fallback data
-      setLeetcodeStats({
-        totalSolved: 150,
-        easySolved: 75,
-        mediumSolved: 60,
-        hardSolved: 15,
-        acceptanceRate: 87.5,
-        ranking: 245678
-      })
+      setLeetcodeStats({ error: 'Failed to fetch data' })
     }
   }
 
   const fetchGithubStats = async () => {
     try {
-      // Direct GitHub API calls
       const userResponse = await fetch('https://api.github.com/users/Dhiyanesh40')
+      if (!userResponse.ok) throw new Error('Failed to fetch GitHub user data')
       const userData = await userResponse.json()
       
       const reposResponse = await fetch('https://api.github.com/users/Dhiyanesh40/repos?per_page=100')
+      if (!reposResponse.ok) throw new Error('Failed to fetch GitHub repos data')
       const reposData = await reposResponse.json()
       
-      // Calculate stats
-      const totalStars = reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0)
-      const totalForks = reposData.reduce((acc: number, repo: any) => acc + repo.forks_count, 0)
+      // Get real contribution data using GitHub GraphQL API
+      const contributionsQuery = `
+        query {
+          user(login: "Dhiyanesh40") {
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    date
+                  }
+                }
+              }
+            }
+          }
+        }
+      `
+      
+      let contributionData = null
+      try {
+        const contributionsResponse = await fetch('https://api.github.com/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_TOKEN || ''}`,
+          },
+          body: JSON.stringify({ query: contributionsQuery }),
+        })
+        if (contributionsResponse.ok) {
+          const contributionsResult = await contributionsResponse.json()
+          contributionData = contributionsResult.data?.user?.contributionsCollection?.contributionCalendar
+        }
+      } catch (e) {
+        console.warn('GitHub GraphQL API not available, skipping contribution calendar')
+      }
+      
+      // Calculate real stats from actual data
+      const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0)
+      const totalForks = reposData.reduce((acc: number, repo: any) => acc + (repo.forks_count || 0), 0)
       const languages = reposData.reduce((acc: any, repo: any) => {
         if (repo.language) {
           acc[repo.language] = (acc[repo.language] || 0) + 1
@@ -71,6 +100,8 @@ export const useCodingStats = () => {
         following: userData.following,
         totalStars,
         totalForks,
+        totalContributions: contributionData?.totalContributions || null,
+        contributionCalendar: contributionData || null,
         topLanguages: Object.entries(languages)
           .sort(([,a], [,b]) => (b as number) - (a as number))
           .slice(0, 5)
@@ -78,119 +109,95 @@ export const useCodingStats = () => {
       })
     } catch (err) {
       console.error('Error fetching GitHub stats:', err)
-      // Fallback data
-      setGithubStats({
-        publicRepos: 25,
-        followers: 12,
-        following: 8,
-        totalStars: 45,
-        totalForks: 12,
-        topLanguages: [
-          { language: 'Python', count: 8 },
-          { language: 'JavaScript', count: 6 },
-          { language: 'TypeScript', count: 4 }
-        ]
-      })
+      setGithubStats({ error: 'Failed to fetch GitHub data' })
     }
   }
 
-  const fetchPlatformStats = async (platform: string, username: string, setter: any) => {
+  const fetchCodeforcesStats = async () => {
     try {
-      // Using mock data for now - can be replaced with real APIs when available
-      let data = {}
+      const userResponse = await fetch('https://codeforces.com/api/user.info?handles=dhiyaneshb.23aid')
+      if (!userResponse.ok) throw new Error('Failed to fetch Codeforces user data')
+      const userData = await userResponse.json()
       
-      switch (platform) {
-        case 'hackerrank':
-          data = {
-            username,
-            rank: 'Gold',
-            badges: 15,
-            certificates: 8,
-            points: 2847,
-            domains: ['Problem Solving', 'Python', 'SQL', 'Java'],
-            level: 'Advanced'
-          }
-          break
-          
-        case 'hackerearth':
-          data = {
-            username,
-            rating: 1647,
-            globalRank: 2345,
-            contestsParticipated: 12,
-            problemsSolved: 89,
-            badges: ['Fast Coder', 'Problem Solver'],
-            level: 'Intermediate'
-          }
-          break
-          
-        case 'codechef':
-          try {
-            const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`)
-            const codechefData = await response.json()
-            data = {
-              username: codechefData.username || username,
-              currentRating: codechefData.currentRating || 1534,
-              highestRating: codechefData.highestRating || 1678,
-              stars: codechefData.stars || '3⭐',
-              globalRank: codechefData.globalRank || 15234,
-              countryRank: codechefData.countryRank || 2456,
-              contestsParticipated: codechefData.contestsParticipated || 23,
-              problemsSolved: codechefData.problemsSolved || 156
-            }
-          } catch {
-            data = {
-              username,
-              currentRating: 1534,
-              highestRating: 1678,
-              stars: '3⭐',
-              globalRank: 15234,
-              countryRank: 2456,
-              contestsParticipated: 23,
-              problemsSolved: 156
-            }
-          }
-          break
-          
-        case 'codeforces':
-          try {
-            const response = await fetch(`https://codeforces.com/api/user.info?handles=${username}`)
-            const cfData = await response.json()
-            if (cfData.status === 'OK' && cfData.result.length > 0) {
-              const user = cfData.result[0]
-              data = {
-                username: user.handle,
-                rating: user.rating || 1234,
-                maxRating: user.maxRating || 1456,
-                rank: user.rank || 'Pupil',
-                maxRank: user.maxRank || 'Specialist',
-                contribution: user.contribution || 45,
-                friendOfCount: user.friendOfCount || 12
-              }
-            } else {
-              throw new Error('User not found')
-            }
-          } catch {
-            data = {
-              username,
-              rating: 1234,
-              maxRating: 1456,
-              rank: 'Pupil',
-              maxRank: 'Specialist',
-              contribution: 45,
-              friendOfCount: 12
-            }
-          }
-          break
-          
-        default:
-          data = {}
+      if (userData.status !== 'OK' || !userData.result?.length) {
+        throw new Error('Invalid Codeforces response')
       }
       
-      setter(data)
+      const user = userData.result[0]
+      
+      // Fetch submission data for calendar
+      const submissionsResponse = await fetch('https://codeforces.com/api/user.status?handle=dhiyaneshb.23aid')
+      let submissionCalendar = null
+      
+      if (submissionsResponse.ok) {
+        const submissionsData = await submissionsResponse.json()
+        if (submissionsData.status === 'OK') {
+          // Group submissions by date
+          const submissions = submissionsData.result || []
+          const calendar: { [key: string]: number } = {}
+          
+          submissions.forEach((submission: any) => {
+            const date = new Date(submission.creationTimeSeconds * 1000).toISOString().split('T')[0]
+            calendar[date] = (calendar[date] || 0) + 1
+          })
+          
+          submissionCalendar = calendar
+        }
+      }
+      
+      setCodeforcesStats({
+        username: user.handle,
+        rating: user.rating || null,
+        maxRating: user.maxRating || null,
+        rank: user.rank || null,
+        maxRank: user.maxRank || null,
+        contribution: user.contribution || 0,
+        friendOfCount: user.friendOfCount || 0,
+        submissionCalendar
+      })
     } catch (err) {
-      console.error(`Error fetching ${platform} stats:`, err)
-      setter({})
+      console.error('Error fetching Codeforces stats:', err)
+      setCodeforcesStats({ error: 'Failed to fetch Codeforces data' })
+    }
+  }
+
+  const fetchCodechefStats = async () => {
+    try {
+      // CodeChef doesn't have a public API for submission calendar
+      // We'll only fetch basic profile data without fake submissions
+      setCodechefStats({
+        username: 'dhiyanesh_40',
+        error: 'CodeChef API not available - showing profile link only'
+      })
+    } catch (err) {
+      console.error('Error fetching CodeChef stats:', err)
+      setCodechefStats({ error: 'Failed to fetch CodeChef data' })
+    }
+  }
+
+  const fetchHackerrankStats = async () => {
+    try {
+      // HackerRank doesn't have a public API for profile stats
+      setHackerrankStats({
+        username: '23ADR040',
+        error: 'HackerRank API not available - showing profile link only'
+      })
+    } catch (err) {
+      console.error('Error fetching HackerRank stats:', err)
+      setHackerrankStats({ error: 'Failed to fetch HackerRank data' })
+    }
+  }
+
+  const fetchHackerearthStats = async () => {
+    try {
+      // HackerEarth doesn't have a public API for profile stats
+      setHackerearthStats({
+        username: '@dhiyaneshb.23aid',
+        error: 'HackerEarth API not available - showing profile link only'
+      })
+    } catch (err) {
+      console.error('Error fetching HackerEarth stats:', err)
+      setHackerearthStats({ error: 'Failed to fetch HackerEarth data' })
     }
   }
 
@@ -201,10 +208,10 @@ export const useCodingStats = () => {
         await Promise.all([
           fetchLeetcodeStats(),
           fetchGithubStats(),
-          fetchPlatformStats('hackerrank', '23ADR040', setHackerrankStats),
-          fetchPlatformStats('hackerearth', '@dhiyaneshb.23aid', setHackerearthStats),
-          fetchPlatformStats('codechef', 'dhiyanesh_40', setCodechefStats),
-          fetchPlatformStats('codeforces', 'dhiyaneshb.23aid', setCodeforcesStats)
+          fetchCodeforcesStats(),
+          fetchCodechefStats(),
+          fetchHackerrankStats(),
+          fetchHackerearthStats()
         ])
       } catch (err) {
         setError('Failed to fetch coding statistics')
