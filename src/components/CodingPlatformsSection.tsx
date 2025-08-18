@@ -25,22 +25,18 @@ const CodingPlatformsSection = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="space-y-8">
-              <div className="transform scale-95">
-                <CodeChefSection />
-              </div>
-              <div className="transform scale-95">
-                <HackerRankSection />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="transform scale-90">
+              <CodeChefSection />
             </div>
-            <div className="space-y-8">
-              <div className="transform scale-95">
-                <CodeforcesSection />
-              </div>
-              <div className="transform scale-95">
-                <HackerEarthSection />
-              </div>
+            <div className="transform scale-90">
+              <CodeforcesSection />
+            </div>
+            <div className="transform scale-90">
+              <HackerRankSection />
+            </div>
+            <div className="transform scale-90">
+              <HackerEarthSection />
             </div>
           </div>
         </div>

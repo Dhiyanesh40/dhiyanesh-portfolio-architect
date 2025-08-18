@@ -40,37 +40,6 @@ const CodeforcesSection = () => {
     }
   ];
 
-  // Generate calendar heatmap from submission data
-  const generateSubmissionCalendar = () => {
-    if (!codeforcesStats?.submissionCalendar) return []
-    
-    const weeks = []
-    const today = new Date()
-    const oneYear = 365 * 24 * 60 * 60 * 1000
-    const startDate = new Date(today.getTime() - oneYear)
-    
-    for (let i = 0; i < 53; i++) {
-      const week = []
-      for (let j = 0; j < 7; j++) {
-        const date = new Date(startDate.getTime() + (i * 7 + j) * 24 * 60 * 60 * 1000)
-        const dateStr = date.toISOString().split('T')[0]
-        const count = codeforcesStats.submissionCalendar[dateStr] || 0
-        week.push({ date: dateStr, count })
-      }
-      weeks.push(week)
-    }
-    return weeks
-  }
-
-  const submissionCalendar = generateSubmissionCalendar()
-
-  const getSubmissionColor = (count: number) => {
-    if (count === 0) return 'bg-muted/30'
-    if (count <= 2) return 'bg-purple-200 dark:bg-purple-900/40'
-    if (count <= 5) return 'bg-purple-300 dark:bg-purple-800/60'
-    if (count <= 10) return 'bg-purple-400 dark:bg-purple-700/80'
-    return 'bg-purple-500 dark:bg-purple-600'
-  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,67 +97,31 @@ const CodeforcesSection = () => {
           ))}
         </div>
 
-        {/* Submission Calendar */}
+        {/* Profile Link */}
         <div className="max-w-4xl mx-auto">
           <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
               <CardTitle className="text-center text-card-foreground">
-                {codeforcesStats?.error ? 'Codeforces Data Unavailable' : 'Submission Activity'}
+                {codeforcesStats?.error ? 'Codeforces Data Unavailable' : 'Codeforces Profile'}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {codeforcesStats?.error ? (
-                <div className="text-center py-8">
+              <div className="text-center py-8">
+                {codeforcesStats?.error ? (
                   <p className="text-muted-foreground mb-4">{codeforcesStats.error}</p>
-                  <Button
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
-                    onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
-                  >
-                    <ExternalLink size={16} className="mr-2" />
-                    View Codeforces Profile
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  {submissionCalendar.length > 0 && (
-                    <div className="overflow-x-auto mb-6">
-                      <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                        {submissionCalendar.map((week, weekIndex) => 
-                          week.map((day, dayIndex) => (
-                            <div
-                              key={`${weekIndex}-${dayIndex}`}
-                              className={`w-3 h-3 rounded-sm ${getSubmissionColor(day.count)} transition-opacity duration-300`}
-                              style={{
-                                opacity: isVisible ? 1 : 0,
-                                transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                              }}
-                              title={`${day.date}: ${day.count} submissions`}
-                            />
-                          ))
-                        )}
-                      </div>
-                      <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                        <span>Jan</span>
-                        <span>Mar</span>
-                        <span>May</span>
-                        <span>Jul</span>
-                        <span>Sep</span>
-                        <span>Nov</span>
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="text-center">
-                    <Button
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
-                      onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
-                    >
-                      <ExternalLink size={16} className="mr-2" />
-                      View Codeforces Profile
-                    </Button>
-                  </div>
-                </>
-              )}
+                ) : (
+                  <p className="text-muted-foreground mb-6">
+                    Visit my Codeforces profile to see my complete competitive programming journey and achievements.
+                  </p>
+                )}
+                <Button
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
+                >
+                  <ExternalLink size={16} className="mr-2" />
+                  View Codeforces Profile
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
