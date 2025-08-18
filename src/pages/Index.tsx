@@ -6,12 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
-import LeetcodeSection from '@/components/LeetcodeSection';
-import HackerRankSection from '@/components/HackerRankSection';
-import HackerEarthSection from '@/components/HackerEarthSection';
-import CodeChefSection from '@/components/CodeChefSection';
-import CodeforcesSection from '@/components/CodeforcesSection';
-import GitHubSection from '@/components/GitHubSection';
+import CodingPlatformsSection from '@/components/CodingPlatformsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import EducationSection from '@/components/EducationSection';
 import ContactSection from '@/components/ContactSection';
@@ -65,12 +60,7 @@ const Index = () => {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
-      <LeetcodeSection />
-      <HackerRankSection />
-      <HackerEarthSection />
-      <CodeChefSection />
-      <CodeforcesSection />
-      <GitHubSection />
+      <CodingPlatformsSection />
       <CertificationsSection />
       <EducationSection />
       <ContactSection />
