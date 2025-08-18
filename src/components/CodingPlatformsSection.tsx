@@ -25,17 +25,17 @@ const CodingPlatformsSection = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="transform scale-90">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
               <CodeChefSection />
             </div>
-            <div className="transform scale-90">
+            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
               <CodeforcesSection />
             </div>
-            <div className="transform scale-90">
+            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
               <HackerRankSection />
             </div>
-            <div className="transform scale-90">
+            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
               <HackerEarthSection />
             </div>
           </div>

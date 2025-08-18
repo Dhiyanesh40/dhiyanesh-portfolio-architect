@@ -59,74 +59,48 @@ const CodeforcesSection = () => {
   }, []);
 
   return (
-    <section id="codeforces" ref={sectionRef} className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
-            Codeforces Progress
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 mx-auto rounded-full"></div>
-          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
-            {loading ? 'Loading real-time Codeforces statistics...' : 'My competitive programming journey on Codeforces'}
-          </p>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {stats.map((stat, index) => (
-            <Card 
-              key={index}
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-up bg-card border-border`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6 text-center">
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
-                  <stat.icon className="text-white" size={24} />
+    <div className="h-full">
+      <Card className="h-full bg-card border-border hover:border-primary/50 transition-all duration-300">
+        <CardHeader className="text-center pb-4">
+          <CardTitle className="text-xl font-bold text-card-foreground">
+            Codeforces
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col justify-between h-full pb-6">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {stats.map((stat, index) => (
+              <div 
+                key={index}
+                className="text-center p-3 rounded-lg bg-muted/30"
+              >
+                <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-2`}>
+                  <stat.icon className="text-white" size={16} />
                 </div>
-                <h3 className="text-2xl font-bold text-card-foreground mb-1">
+                <p className="text-lg font-bold text-card-foreground">
                   {stat.value}
-                </h3>
-                <p className="text-sm font-medium text-muted-foreground mb-2">
-                  {stat.label}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {stat.description}
+                  {stat.label}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Profile Link */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                {codeforcesStats?.error ? 'Codeforces Data Unavailable' : 'Codeforces Profile'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-8">
-                {codeforcesStats?.error ? (
-                  <p className="text-muted-foreground mb-4">{codeforcesStats.error}</p>
-                ) : (
-                  <p className="text-muted-foreground mb-6">
-                    Visit my Codeforces profile to see my complete competitive programming journey and achievements.
-                  </p>
-                )}
-                <Button
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
-                  onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
-                >
-                  <ExternalLink size={16} className="mr-2" />
-                  View Codeforces Profile
-                </Button>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </section>
+            ))}
+          </div>
+          
+          {/* Profile Button */}
+          <div className="text-center mt-auto">
+            <Button
+              size="sm"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+              onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
+            >
+              <ExternalLink size={14} className="mr-1" />
+              View Profile
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
