@@ -1,9 +1,16 @@
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Code, Download, Send, Twitter, Trophy, Award, Star, Zap, Target, Brain } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, Download, Send, Twitter } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+
+// Import platform logos
+import leetcodeLogo from '@/assets/leetcode-logo.png';
+import hackerrankLogo from '@/assets/hackerrank-logo.png';
+import hackerearthLogo from '@/assets/hackerearth-logo.png';
+import codechefLogo from '@/assets/codechef-logo.png';
+import codeforcesSvg from '@/assets/codeforces-logo.png';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +22,7 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: Mail,
+      type: 'icon',
       label: 'Email',
       value: 'dhiyaneshb.23aid@kongu.edu',
       href: 'https://mail.google.com/mail/u/0/?to=dhiyaneshb.23aid@kongu.edu&fs=1&tf=cm',
@@ -22,6 +30,7 @@ const ContactSection = () => {
     },
     {
       icon: Linkedin,
+      type: 'icon',
       label: 'LinkedIn',
       value: 'dhiyaneshb',
       href: 'https://linkedin.com/in/dhiyaneshb',
@@ -29,6 +38,7 @@ const ContactSection = () => {
     },
     {
       icon: Github,
+      type: 'icon',
       label: 'GitHub',
       value: 'Dhiyanesh40',
       href: 'https://github.com/Dhiyanesh40',
@@ -36,41 +46,47 @@ const ContactSection = () => {
     },
     {
       icon: Twitter,
+      type: 'icon',
       label: 'Twitter/X',
       value: 'Dhiyanesh_19',
       href: 'https://x.com/Dhiyanesh_19?t=-DYxelikuCVSUrjcTN1aIQ&s=08',
       color: 'text-blue-500'
     },
     {
-      icon: Zap,
+      logo: leetcodeLogo,
+      type: 'logo',
       label: 'LeetCode',
       value: '23ADR040',
       href: 'https://leetcode.com/u/23ADR040/',
       color: 'text-orange-500'
     },
     {
-      icon: Trophy,
+      logo: hackerrankLogo,
+      type: 'logo',
       label: 'HackerRank',
       value: '23ADR040',
       href: 'https://www.hackerrank.com/profile/23ADR040',
       color: 'text-green-600'
     },
     {
-      icon: Target,
+      logo: hackerearthLogo,
+      type: 'logo',
       label: 'HackerEarth',
       value: 'dhiyaneshb.23aid',
       href: 'https://www.hackerearth.com/@dhiyaneshb.23aid',
       color: 'text-blue-500'
     },
     {
-      icon: Star,
+      logo: codechefLogo,
+      type: 'logo',
       label: 'CodeChef',
       value: 'dhiyanesh_b',
       href: 'https://www.codechef.com/users/dhiyanesh_b',
       color: 'text-amber-600'
     },
     {
-      icon: Brain,
+      logo: codeforcesSvg,
+      type: 'logo',
       label: 'Codeforces',
       value: 'Dhiyanesh_19',
       href: 'https://codeforces.com/profile/Dhiyanesh_19',
@@ -78,6 +94,7 @@ const ContactSection = () => {
     },
     {
       icon: MapPin,
+      type: 'icon',
       label: 'Location',
       value: 'Erode, Tamil Nadu, India',
       href: '#',
@@ -141,7 +158,15 @@ const ContactSection = () => {
                 >
                   <CardContent className="p-4 text-center">
                     <div className={`p-3 rounded-full bg-muted group-hover:bg-muted/80 transition-colors duration-300 w-12 h-12 mx-auto mb-3 flex items-center justify-center`}>
-                      <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
+                      {item.type === 'icon' ? (
+                        <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
+                      ) : (
+                        <img 
+                          src={item.logo} 
+                          alt={`${item.label} logo`}
+                          className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      )}
                     </div>
                     <h4 className="font-semibold text-card-foreground font-inter mb-1 text-sm">{item.label}</h4>
                     <p className="text-xs text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 break-words">
