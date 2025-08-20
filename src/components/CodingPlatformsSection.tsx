@@ -25,17 +25,17 @@ const CodingPlatformsSection = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="aspect-[4/3] w-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 hover:z-10 relative">
               <CodeChefSection />
             </div>
-            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+            <div className="aspect-[4/3] w-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 hover:z-10 relative">
               <CodeforcesSection />
             </div>
-            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+            <div className="aspect-[4/3] w-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 hover:z-10 relative">
               <HackerRankSection />
             </div>
-            <div className="h-96 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+            <div className="aspect-[4/3] w-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 hover:z-10 relative">
               <HackerEarthSection />
             </div>
           </div>

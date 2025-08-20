@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Code, Download, Send, Twitter } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, Code, Download, Send, Twitter, Trophy, Award, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -47,6 +47,34 @@ const ContactSection = () => {
       value: 'leetcode.com/u/23ADR040',
       href: 'https://leetcode.com/u/23ADR040/',
       color: 'text-orange-500'
+    },
+    {
+      icon: Trophy,
+      label: 'HackerRank',
+      value: 'hackerrank.com/profile/23ADR040',
+      href: 'https://www.hackerrank.com/profile/23ADR040',
+      color: 'text-green-600'
+    },
+    {
+      icon: Award,
+      label: 'HackerEarth',
+      value: 'hackerearth.com/@dhiyaneshb.23aid',
+      href: 'https://www.hackerearth.com/@dhiyaneshb.23aid',
+      color: 'text-blue-500'
+    },
+    {
+      icon: Star,
+      label: 'CodeChef',
+      value: 'codechef.com/users/dhiyanesh_b',
+      href: 'https://www.codechef.com/users/dhiyanesh_b',
+      color: 'text-amber-600'
+    },
+    {
+      icon: Code,
+      label: 'Codeforces',
+      value: 'codeforces.com/profile/Dhiyanesh_19',
+      href: 'https://codeforces.com/profile/Dhiyanesh_19',
+      color: 'text-red-500'
     },
     {
       icon: MapPin,
