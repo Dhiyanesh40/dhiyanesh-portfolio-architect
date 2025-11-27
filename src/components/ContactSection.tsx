@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Download, Send, Twitter, Code2, Trophy, Award, Star, Zap, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Linkedin, Github, MapPin, Download, Send, Code2, Trophy, Award, Star, Zap, MessageCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -35,24 +35,10 @@ const ContactSection = () => {
       color: 'text-gray-700 dark:text-gray-300'
     },
     {
-      icon: Twitter,
-      label: 'Twitter/X',
-      value: 'Dhiyanesh_19',
-      href: 'https://x.com/Dhiyanesh_19?t=-DYxelikuCVSUrjcTN1aIQ&s=08',
-      color: 'text-blue-500'
-    },
-    {
-      icon: Instagram,
-      label: 'Instagram',
-      value: 'dhiyanesh_19',
-      href: 'https://instagram.com/dhiyanesh_19',
-      color: 'text-pink-500'
-    },
-    {
       icon: MessageCircle,
       label: 'WhatsApp',
-      value: '+91-XXXXXXXXXX',
-      href: 'https://wa.me/91XXXXXXXXXX',
+      value: '+91 9361426949',
+      href: 'https://wa.me/919361426949',
       color: 'text-green-500'
     },
     {
