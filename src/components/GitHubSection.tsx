@@ -40,32 +40,6 @@ const GitHubSection = () => {
     }
   ];
 
-  // Generate real contribution calendar from GitHub data
-  const generateContributionData = () => {
-    if (!githubStats?.contributionCalendar) return []
-    
-    const weeks = githubStats.contributionCalendar.weeks || []
-    return weeks.map(week => 
-      week.contributionDays.map(day => ({
-        date: day.date,
-        count: day.contributionCount
-      }))
-    )
-  }
-
-  const contributionData = generateContributionData()
-  const topLanguages = githubStats?.topLanguages || []
-
-  const getContributionColor = (level: number) => {
-    const colors = [
-      'bg-muted/30', // 0 contributions
-      'bg-green-200 dark:bg-green-900/40', // 1 contribution
-      'bg-green-300 dark:bg-green-800/60', // 2 contributions
-      'bg-green-400 dark:bg-green-700/80', // 3 contributions
-      'bg-green-500 dark:bg-green-600' // 4+ contributions
-    ];
-    return colors[Math.min(level, 4)];
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -123,95 +97,8 @@ const GitHubSection = () => {
           ))}
         </div>
 
-        {/* Contribution Calendar & Languages */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contribution Calendar */}
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                {githubStats?.error 
-                  ? 'GitHub Data Unavailable' 
-                  : githubStats?.totalContributions 
-                    ? `${githubStats.totalContributions} contributions in the past year`
-                    : 'GitHub Contributions'
-                }
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {githubStats?.error ? (
-                <div className="text-center py-8">
-                  <p className="text-muted-foreground">{githubStats.error}</p>
-                </div>
-              ) : contributionData.length > 0 ? (
-                <>
-                  <div className="overflow-x-auto">
-                    <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                      {contributionData.map((week, weekIndex) => 
-                        week.map((day, dayIndex) => (
-                          <div
-                            key={`${weekIndex}-${dayIndex}`}
-                            className={`w-3 h-3 rounded-sm ${getContributionColor(day.count)} transition-opacity duration-300`}
-                            style={{
-                              opacity: isVisible ? 1 : 0,
-                              transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                            }}
-                            title={`${day.date}: ${day.count} contributions`}
-                          />
-                        ))
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                    <span>Jan</span>
-                    <span>Mar</span>
-                    <span>May</span>
-                    <span>Jul</span>
-                    <span>Sep</span>
-                    <span>Nov</span>
-                  </div>
-                </>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-muted-foreground">Contribution calendar not available</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Top Languages */}
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.6s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                Top Languages
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {topLanguages.map((lang, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium text-card-foreground">
-                      {lang.language}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {lang.count} repos
-                    </span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div
-                      className="h-2 rounded-full bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-400 dark:to-gray-600 transition-all duration-1000 ease-out"
-                      style={{
-                        width: isVisible ? `${(lang.count / Math.max(...topLanguages.map(l => l.count))) * 100}%` : '0%',
-                        transitionDelay: `${index * 0.1}s`
-                      }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="text-center mt-12">
+        {/* View Profile Button */}
+        <div className="text-center">
           <Button
             className="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white"
             onClick={() => window.open('https://github.com/Dhiyanesh40', '_blank')}
