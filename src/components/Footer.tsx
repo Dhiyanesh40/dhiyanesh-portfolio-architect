@@ -1,5 +1,5 @@
 
-import { ArrowUp, Github, Linkedin, Instagram, MessageCircle, Mail, Phone, Twitter } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, MessageCircle, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -21,20 +21,8 @@ const Footer = () => {
       color: 'hover:text-blue-500'
     },
     {
-      icon: Twitter,
-      href: 'https://x.com/Dhiyanesh_19?t=-DYxelikuCVSUrjcTN1aIQ&s=08',
-      label: 'Twitter/X',
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: Instagram,
-      href: 'https://instagram.com/dhiyanesh_19',
-      label: 'Instagram',
-      color: 'hover:text-pink-500'
-    },
-    {
       icon: MessageCircle,
-      href: 'https://wa.me/+919361426949',
+      href: 'https://wa.me/919361426949',
       label: 'WhatsApp',
       color: 'hover:text-green-500'
     },
