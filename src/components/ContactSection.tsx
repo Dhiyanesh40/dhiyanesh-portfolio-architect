@@ -1,17 +1,10 @@
 
 import { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin, Download, Send, Code2, Trophy, Award, Star, Zap, MessageCircle } from 'lucide-react';
+import { Mail, Linkedin, Github, Download, Code2, Trophy, Award, Star, Zap, MessageCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
   const contactInfo = [
     {
       icon: Mail,
@@ -76,13 +69,6 @@ const ContactSection = () => {
       href: 'https://codeforces.com/profile/Dhiyanesh_19',
       color: 'text-red-500'
     },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Erode, Tamil Nadu, India',
-      href: '#',
-      color: 'text-green-500'
-    }
   ];
 
   const downloadResume = () => {
@@ -91,21 +77,6 @@ const ContactSection = () => {
     link.href = '/resume.pdf'; // Replace with actual resume path
     link.download = 'Dhiyanesh_B_Resume.pdf';
     link.click();
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({ name: '', email: '', message: '' });
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
   };
 
   return (
@@ -121,8 +92,7 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left side - Contact Info */}
+        <div className="max-w-6xl mx-auto">
           <div className="animate-fade-up">
             <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
               Let's Connect
@@ -132,7 +102,7 @@ const ContactSection = () => {
               I'd love to hear from you. Let's create something amazing together!
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {contactInfo.map((item, index) => (
                 <Card 
                   key={item.label}
@@ -164,73 +134,6 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Right side - Contact Form */}
-          <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Card className="bg-card border-border shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold font-poppins text-foreground mb-6">
-                  Send a Message
-                </h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-card-foreground mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your Name"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-card-foreground mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell me about your project or just say hello!"
-                    />
-                  </div>
-                  
-                  <Button
-                    type="submit"
-                    className="w-full group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                  >
-                    <Send className="mr-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </div>
     </section>
