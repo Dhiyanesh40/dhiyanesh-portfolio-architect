@@ -41,37 +41,6 @@ const LeetcodeSection = () => {
     }
   ];
 
-  // Generate calendar heatmap from submission data
-  const generateSubmissionCalendar = () => {
-    if (!leetcodeStats?.submissionCalendar) return []
-    
-    const weeks = []
-    const today = new Date()
-    const oneYear = 365 * 24 * 60 * 60 * 1000
-    const startDate = new Date(today.getTime() - oneYear)
-    
-    for (let i = 0; i < 53; i++) {
-      const week = []
-      for (let j = 0; j < 7; j++) {
-        const date = new Date(startDate.getTime() + (i * 7 + j) * 24 * 60 * 60 * 1000)
-        const dateStr = date.toISOString().split('T')[0]
-        const count = leetcodeStats.submissionCalendar[dateStr] || 0
-        week.push({ date: dateStr, count })
-      }
-      weeks.push(week)
-    }
-    return weeks
-  }
-
-  const submissionCalendar = generateSubmissionCalendar()
-
-  const getSubmissionColor = (count: number) => {
-    if (count === 0) return 'bg-muted/30'
-    if (count <= 2) return 'bg-green-200 dark:bg-green-900/40'
-    if (count <= 5) return 'bg-green-300 dark:bg-green-800/60'
-    if (count <= 10) return 'bg-green-400 dark:bg-green-700/80'
-    return 'bg-green-500 dark:bg-green-600'
-  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,69 +98,15 @@ const LeetcodeSection = () => {
           ))}
         </div>
 
-        {/* Submission Calendar */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="animate-fade-up bg-card border-border" style={{ animationDelay: '0.5s' }}>
-            <CardHeader>
-              <CardTitle className="text-center text-card-foreground">
-                {leetcodeStats?.error ? 'LeetCode Data Unavailable' : 'Submission Activity'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {leetcodeStats?.error ? (
-                <div className="text-center py-8">
-                  <p className="text-muted-foreground mb-4">{leetcodeStats.error}</p>
-                  <Button
-                    className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white"
-                    onClick={() => window.open('https://leetcode.com/u/23ADR040/', '_blank')}
-                  >
-                    <ExternalLink size={16} className="mr-2" />
-                    View LeetCode Profile
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  {submissionCalendar.length > 0 && (
-                    <div className="overflow-x-auto mb-6">
-                      <div className="grid grid-flow-col gap-1" style={{ gridTemplateRows: 'repeat(7, 1fr)' }}>
-                        {submissionCalendar.map((week, weekIndex) => 
-                          week.map((day, dayIndex) => (
-                            <div
-                              key={`${weekIndex}-${dayIndex}`}
-                              className={`w-3 h-3 rounded-sm ${getSubmissionColor(day.count)} transition-opacity duration-300`}
-                              style={{
-                                opacity: isVisible ? 1 : 0,
-                                transitionDelay: `${(weekIndex * 7 + dayIndex) * 2}ms`
-                              }}
-                              title={`${day.date}: ${day.count} submissions`}
-                            />
-                          ))
-                        )}
-                      </div>
-                      <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-                        <span>Jan</span>
-                        <span>Mar</span>
-                        <span>May</span>
-                        <span>Jul</span>
-                        <span>Sep</span>
-                        <span>Nov</span>
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="text-center">
-                    <Button
-                      className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white"
-                      onClick={() => window.open('https://leetcode.com/u/23ADR040/', '_blank')}
-                    >
-                      <ExternalLink size={16} className="mr-2" />
-                      View LeetCode Profile
-                    </Button>
-                  </div>
-                </>
-              )}
-            </CardContent>
-          </Card>
+        {/* View Profile Button */}
+        <div className="text-center">
+          <Button
+            className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white"
+            onClick={() => window.open('https://leetcode.com/u/23ADR040/', '_blank')}
+          >
+            <ExternalLink size={16} className="mr-2" />
+            View LeetCode Profile
+          </Button>
         </div>
       </div>
     </section>
