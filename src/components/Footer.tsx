@@ -18,7 +18,7 @@ const Footer = () => {
       icon: Linkedin,
       href: 'https://linkedin.com/in/dhiyaneshb',
       label: 'LinkedIn',
-      color: 'hover:text-blue-500'
+      color: 'hover:text-emerald-500'
     },
     {
       icon: MessageCircle,
@@ -36,7 +36,7 @@ const Footer = () => {
       icon: Phone,
       href: 'tel:+919361426949',
       label: 'Phone',
-      color: 'hover:text-blue-500'
+      color: 'hover:text-teal-500'
     }
   ];
 
@@ -79,7 +79,7 @@ const Footer = () => {
       {/* Back to Top Button */}
       <Button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30 p-0"
+        className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30 p-0"
         aria-label="Back to top"
       >
         <ArrowUp size={20} />

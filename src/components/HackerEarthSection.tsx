@@ -40,7 +40,7 @@ const HackerEarthSection = () => {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="text-center p-3 rounded-lg bg-muted/30">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center mx-auto mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex items-center justify-center mx-auto mb-2">
                 <Trophy className="text-white" size={16} />
               </div>
               <p className="text-lg font-bold text-card-foreground">
@@ -51,7 +51,7 @@ const HackerEarthSection = () => {
               </p>
             </div>
             <div className="text-center p-3 rounded-lg bg-muted/30">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center mx-auto mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-green-500 flex items-center justify-center mx-auto mb-2">
                 <Star className="text-white" size={16} />
               </div>
               <p className="text-lg font-bold text-card-foreground">
@@ -62,7 +62,7 @@ const HackerEarthSection = () => {
               </p>
             </div>
             <div className="text-center p-3 rounded-lg bg-muted/30">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mx-auto mb-2">
                 <Code className="text-white" size={16} />
               </div>
               <p className="text-lg font-bold text-card-foreground">
@@ -73,7 +73,7 @@ const HackerEarthSection = () => {
               </p>
             </div>
             <div className="text-center p-3 rounded-lg bg-muted/30">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center mx-auto mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 flex items-center justify-center mx-auto mb-2">
                 <Award className="text-white" size={16} />
               </div>
               <p className="text-lg font-bold text-card-foreground">
@@ -89,7 +89,7 @@ const HackerEarthSection = () => {
           <div className="text-center mt-auto">
             <Button
               size="sm"
-              className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+              className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white"
               onClick={() => window.open('https://www.hackerearth.com/@dhiyaneshb.23aid', '_blank')}
             >
               <ExternalLink size={14} className="mr-1" />

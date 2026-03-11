@@ -14,14 +14,14 @@ const CodeforcesSection = () => {
       label: 'Current Rating',
       value: codeforcesStats?.rating || 'N/A',
       icon: Trophy,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-teal-500 to-cyan-500',
       description: 'Current contest rating'
     },
     {
       label: 'Max Rating',
       value: codeforcesStats?.maxRating || 'N/A',
       icon: Star,
-      color: 'from-blue-500 to-purple-500',
+      color: 'from-emerald-500 to-teal-500',
       description: 'Highest achieved rating'
     },
     {
@@ -91,7 +91,7 @@ const CodeforcesSection = () => {
           <div className="text-center mt-auto">
             <Button
               size="sm"
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+              className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white"
               onClick={() => window.open('https://codeforces.com/profile/dhiyaneshb.23aid', '_blank')}
             >
               <ExternalLink size={14} className="mr-1" />

@@ -5,9 +5,8 @@ import { Button } from '@/components/ui/button';
 
 const AboutSection = () => {
   const downloadResume = () => {
-    // Create a dummy resume download - replace with actual resume URL
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Replace with actual resume path
+    link.href = '/resume.pdf';
     link.download = 'Dhiyanesh_B_Resume.pdf';
     link.click();
   };
@@ -19,7 +18,7 @@ const AboutSection = () => {
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -31,7 +30,7 @@ const AboutSection = () => {
                 alt="Dhiyanesh B at work"
                 className="rounded-2xl shadow-2xl w-full max-w-md"
               />
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl">
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center text-white text-3xl">
                 🚀
               </div>
             </div>
@@ -60,8 +59,8 @@ const AboutSection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <Card className="group hover:shadow-lg transition-shadow duration-300 bg-card border-border">
                 <CardContent className="p-4 flex items-center space-x-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-300">
-                    <MapPin className="text-blue-600 dark:text-blue-400" size={20} />
+                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800 transition-colors duration-300">
+                    <MapPin className="text-emerald-600 dark:text-emerald-400" size={20} />
                   </div>
                   <div>
                     <p className="font-medium text-card-foreground">Location</p>
@@ -72,8 +71,8 @@ const AboutSection = () => {
 
               <Card className="group hover:shadow-lg transition-shadow duration-300 bg-card border-border">
                 <CardContent className="p-4 flex items-center space-x-3">
-                  <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg group-hover:bg-purple-200 dark:group-hover:bg-purple-800 transition-colors duration-300">
-                    <GraduationCap className="text-purple-600 dark:text-purple-400" size={20} />
+                  <div className="p-2 bg-teal-100 dark:bg-teal-900 rounded-lg group-hover:bg-teal-200 dark:group-hover:bg-teal-800 transition-colors duration-300">
+                    <GraduationCap className="text-teal-600 dark:text-teal-400" size={20} />
                   </div>
                   <div>
                     <p className="font-medium text-card-foreground">Education</p>
@@ -99,7 +98,7 @@ const AboutSection = () => {
             <div className="flex justify-center sm:justify-start">
               <Button
                 onClick={downloadResume}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="group bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
                 Download Resume
