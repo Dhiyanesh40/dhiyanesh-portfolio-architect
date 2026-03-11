@@ -21,7 +21,7 @@ const GitHubSection = () => {
       label: 'Followers',
       value: githubStats?.followers?.toString() || 'N/A',
       icon: Users,
-      color: 'from-blue-500 to-purple-500',
+      color: 'from-emerald-500 to-teal-500',
       description: 'GitHub community followers'
     },
     {

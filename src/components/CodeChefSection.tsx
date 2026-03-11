@@ -73,7 +73,7 @@ const CodeChefSection = () => {
               </p>
             </div>
             <div className="text-center p-3 rounded-lg bg-muted/30">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mx-auto mb-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center mx-auto mb-2">
                 <Code className="text-white" size={16} />
               </div>
               <p className="text-lg font-bold text-card-foreground">

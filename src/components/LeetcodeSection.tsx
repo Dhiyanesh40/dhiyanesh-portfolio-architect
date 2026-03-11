@@ -66,7 +66,7 @@ const LeetcodeSection = () => {
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             LeetCode Progress
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             {loading ? 'Loading real-time LeetCode statistics...' : 'My competitive programming journey and problem-solving skills'}
           </p>

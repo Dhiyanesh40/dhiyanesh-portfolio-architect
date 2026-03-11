@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { Mail, Linkedin, Github, Download, Code2, Trophy, Award, Star, Zap, MessageCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ const ContactSection = () => {
       label: 'LinkedIn',
       value: 'dhiyaneshb',
       href: 'https://linkedin.com/in/dhiyaneshb',
-      color: 'text-blue-600'
+      color: 'text-emerald-600'
     },
     {
       icon: Github,
@@ -53,7 +52,7 @@ const ContactSection = () => {
       label: 'HackerEarth',
       value: 'dhiyaneshb.23aid',
       href: 'https://www.hackerearth.com/@dhiyaneshb.23aid',
-      color: 'text-blue-500'
+      color: 'text-teal-500'
     },
     {
       icon: Star,
@@ -72,21 +71,20 @@ const ContactSection = () => {
   ];
 
   const downloadResume = () => {
-    // Create a dummy resume download - replace with actual resume URL
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Replace with actual resume path
+    link.href = '/resume.pdf';
     link.download = 'Dhiyanesh_B_Resume.pdf';
     link.click();
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             I'm always open to discussing new opportunities and interesting projects
           </p>
@@ -114,7 +112,7 @@ const ContactSection = () => {
                       <item.icon className={`${item.color} group-hover:scale-110 transition-transform duration-300`} size={20} />
                     </div>
                     <h4 className="font-semibold text-card-foreground font-inter mb-1 text-sm">{item.label}</h4>
-                    <p className="text-xs text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 break-words">
+                    <p className="text-xs text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300 break-words">
                       {item.value}
                     </p>
                   </CardContent>
@@ -126,7 +124,7 @@ const ContactSection = () => {
             <div className="flex justify-center">
               <Button
                 onClick={downloadResume}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="group bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <Download className="mr-2 group-hover:translate-y-1 transition-transform duration-200" size={18} />
                 Download Resume

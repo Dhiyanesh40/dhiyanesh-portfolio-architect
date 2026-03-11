@@ -13,22 +13,22 @@ const SkillsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const skills: Skill[] = [
-    { name: 'Python', icon: Code, gradient: 'from-blue-500 to-yellow-500' },
+    { name: 'Python', icon: Code, gradient: 'from-emerald-500 to-teal-500' },
     { name: 'JavaScript', icon: FileText, gradient: 'from-yellow-400 to-orange-500' },
-    { name: 'React', icon: Cpu, gradient: 'from-blue-400 to-cyan-400' },
+    { name: 'React', icon: Cpu, gradient: 'from-teal-400 to-cyan-400' },
     { name: 'Node.js', icon: Server, gradient: 'from-green-500 to-green-700' },
     { name: 'HTML', icon: Globe, gradient: 'from-orange-500 to-red-500' },
-    { name: 'CSS', icon: Palette, gradient: 'from-blue-500 to-purple-500' },
-    { name: 'Machine Learning', icon: Bot, gradient: 'from-purple-500 to-pink-500' },
-    { name: 'Deep Learning', icon: Brain, gradient: 'from-indigo-500 to-purple-600' },
+    { name: 'CSS', icon: Palette, gradient: 'from-teal-500 to-emerald-500' },
+    { name: 'Machine Learning', icon: Bot, gradient: 'from-emerald-500 to-green-600' },
+    { name: 'Deep Learning', icon: Brain, gradient: 'from-teal-500 to-emerald-600' },
     { name: 'TensorFlow', icon: Flame, gradient: 'from-orange-500 to-red-600' },
     { name: 'MongoDB', icon: Leaf, gradient: 'from-green-500 to-teal-500' },
     { name: 'Git', icon: Github, gradient: 'from-orange-600 to-red-600' },
-    { name: 'Docker', icon: Container, gradient: 'from-blue-500 to-cyan-500' },
+    { name: 'Docker', icon: Container, gradient: 'from-teal-500 to-cyan-500' },
     { name: 'AWS', icon: Cloud, gradient: 'from-orange-400 to-yellow-500' },
-    { name: 'PostgreSQL', icon: Database, gradient: 'from-blue-600 to-indigo-600' },
+    { name: 'PostgreSQL', icon: Database, gradient: 'from-emerald-600 to-teal-600' },
     { name: 'Express.js', icon: Rocket, gradient: 'from-gray-600 to-gray-800' },
-    { name: 'TypeScript', icon: FileText, gradient: 'from-blue-600 to-blue-800' },
+    { name: 'TypeScript', icon: FileText, gradient: 'from-teal-600 to-teal-800' },
   ];
 
   useEffect(() => {
@@ -49,13 +49,13 @@ const SkillsSection = () => {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <section id="skills" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Skills & Technologies
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             Technologies and tools I work with to bring ideas to life
           </p>
@@ -72,7 +72,7 @@ const SkillsSection = () => {
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${skill.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
                   <skill.icon className="text-white" size={24} />
                 </div>
-                <h3 className="text-sm font-medium text-card-foreground text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className="text-sm font-medium text-card-foreground text-center group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                   {skill.name}
                 </h3>
               </CardContent>

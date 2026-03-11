@@ -62,7 +62,7 @@ const EducationSection = () => {
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case 'Undergraduate': return 'from-blue-500 to-purple-500';
+      case 'Undergraduate': return 'from-emerald-500 to-teal-500';
       case 'Higher Secondary': return 'from-green-500 to-teal-500';
       case 'Secondary': return 'from-orange-500 to-red-500';
       default: return 'from-gray-500 to-gray-700';
@@ -76,7 +76,7 @@ const EducationSection = () => {
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Education
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             My academic journey and educational background
           </p>
@@ -95,7 +95,7 @@ const EducationSection = () => {
                     <GraduationCap size={24} />
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-xl font-poppins text-card-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    <CardTitle className="text-xl font-poppins text-card-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                       {edu.degree}
                     </CardTitle>
                     <p className="text-lg font-medium text-muted-foreground mt-1">

@@ -24,7 +24,7 @@ const CertificationsSection = () => {
       date: 'Dec 2023',
       verifyUrl: '#',
       icon: '🤖',
-      color: 'from-blue-500 to-purple-500'
+      color: 'from-emerald-500 to-teal-500'
     },
     {
       name: 'Deep Learning Specialization',
@@ -32,7 +32,7 @@ const CertificationsSection = () => {
       date: 'Jan 2024',
       verifyUrl: '#',
       icon: '🧠',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-teal-500 to-cyan-500'
     },
     {
       name: 'Python for Data Science',
@@ -40,7 +40,7 @@ const CertificationsSection = () => {
       date: 'Nov 2023',
       verifyUrl: '#',
       icon: '🐍',
-      color: 'from-green-500 to-blue-500'
+      color: 'from-green-500 to-emerald-500'
     },
     {
       name: 'React Development',
@@ -48,7 +48,7 @@ const CertificationsSection = () => {
       date: 'Oct 2023',
       verifyUrl: '#',
       icon: '⚛️',
-      color: 'from-cyan-500 to-blue-500'
+      color: 'from-cyan-500 to-teal-500'
     },
     {
       name: 'AWS Cloud Practitioner',
@@ -86,13 +86,13 @@ const CertificationsSection = () => {
   }, []);
 
   return (
-    <section id="certifications" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <section id="certifications" ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Certifications
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             Professional certifications and courses completed
           </p>
@@ -111,7 +111,7 @@ const CertificationsSection = () => {
                     {cert.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-card-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 mb-1">
+                    <h3 className="font-bold text-card-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300 mb-1">
                       {cert.name}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-2">
@@ -127,7 +127,7 @@ const CertificationsSection = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full opacity-0 group-hover:opacity-100 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300"
+                  className="w-full opacity-0 group-hover:opacity-100 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-all duration-300"
                   onClick={() => window.open(cert.verifyUrl, '_blank')}
                 >
                   <ExternalLink size={14} className="mr-2" />

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ExternalLink, Github, Eye } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -100,7 +99,7 @@ const ProjectsSection = () => {
           <h2 className="text-4xl font-bold font-poppins text-foreground mb-4">
             Featured Projects
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto font-inter">
             Here are some of my recent projects that showcase my skills and passion for technology
           </p>
@@ -144,14 +143,14 @@ const ProjectsSection = () => {
                   </div>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                  <span className="emerald-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                     {project.category}
                   </span>
                 </div>
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold font-poppins text-card-foreground mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className="text-xl font-bold font-poppins text-card-foreground mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                   {project.title}
                 </h3>
                 <p className="text-muted-foreground font-inter text-sm mb-4 leading-relaxed">
@@ -170,7 +169,7 @@ const ProjectsSection = () => {
                 </div>
               </CardContent>
             </Card>
-          ))}
+          ))
         </div>
 
         {projects.length > 6 && (
@@ -178,7 +177,7 @@ const ProjectsSection = () => {
             <Button
               onClick={() => setShowAll(!showAll)}
               variant="outline"
-              className="group border-2 border-border hover:border-blue-600 dark:hover:border-blue-400 text-foreground hover:text-blue-600 dark:hover:text-blue-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 mb-6"
+              className="group border-2 border-border hover:border-emerald-600 dark:hover:border-emerald-400 text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 mb-6"
             >
               {showAll ? 'Show Less' : 'Show More Projects'}
             </Button>
@@ -189,7 +188,7 @@ const ProjectsSection = () => {
           <Button
             onClick={() => window.open('https://github.com/Dhiyanesh40', '_blank')}
             variant="outline"
-            className="group border-2 border-border hover:border-blue-600 dark:hover:border-blue-400 text-foreground hover:text-blue-600 dark:hover:text-blue-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            className="group border-2 border-border hover:border-emerald-600 dark:hover:border-emerald-400 text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 font-inter font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
           >
             <Github className="mr-2 group-hover:rotate-12 transition-transform duration-200" size={18} />
             View All Projects on GitHub
